@@ -1,15 +1,75 @@
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
+import Image from "next/image";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import remarkGfm from "remark-gfm";
+import styled from "styled-components";
 
-const components = {};
+const CSSVariables = styled.div`
+  --color-h1: red;
+  --color-h2: green;
+  --color: black;
+`;
+
+const Code = (props: any) => {
+  const retrieveLanguage = (className: string) => {
+    return className.split("-").pop();
+  };
+  return (
+    <SyntaxHighlighter
+      language={retrieveLanguage(props.className)}
+      showLineNumbers={true}
+      wrapLongLines={true}
+    >
+      {props.children}
+    </SyntaxHighlighter>
+  );
+};
+
+const Article = styled.article`
+  padding: 2.5rem;
+`;
+
+const H1 = styled.h1`
+  color: var(--color-h1);
+`;
+
+const H2 = styled.h2`
+  color: var(--color-h2);
+`;
+
+const P = styled.p`
+  color: var(--color);
+`;
+
+const A = styled.a`
+  color: var(--color);
+  cursor: pointer;
+  text-decoration: underline;
+`;
+
+const LI = styled.li`
+  color: var(--color);
+`;
+
+const components = {
+  h1: (props: any) => <H1>{props.children}</H1>,
+  h2: (props: any) => <H2>{props.children}</H2>,
+  p: (props: any) => <P>{props.children}</P>,
+  a: (props: any) => <A>{props.children}</A>,
+  li: (props: any) => <LI>{props.children}</LI>,
+  img: (props: any) => <Image src={props.src} width={500} height={250} />,
+  code: (props: any) => <Code {...props}></Code>,
+};
 
 export default function Post({ source }: any) {
   console.log(source.frontmatter);
   return (
-    <article>
-      <MDXRemote {...source} components={components} />
-    </article>
+    <CSSVariables>
+      <Article>
+        <MDXRemote {...source} components={components} />
+      </Article>
+    </CSSVariables>
   );
 }
 
@@ -31,7 +91,11 @@ export async function getStaticPaths() {
  */
 export async function getStaticProps() {
   //const res = await fetch(`http://localhost:3000/content/blog/{params.id}.mdx`);
-  const res = await fetch(`http://localhost:3000/content/blog/test.mdx`);
+  /*const res = await fetch(
+    `http://localhost:3000/content/blog/angular/angular.mdx`
+  );*/
+  const res = await fetch(`http://localhost:3000/content/blog/medium/medium.mdx`);
+  //const res = await fetch(`http://localhost:3000/content/blog/test.mdx`);
   const source = await res.text();
 
   const mdxSource = await serialize(source, {
