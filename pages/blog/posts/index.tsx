@@ -11,7 +11,6 @@ const CSSVariables = styled.div`
   --color: black;
 `;
 
-
 const Code = (props: any) => {
   const retrieveLanguage = (className: string) => {
     return className.split("-").pop();
@@ -93,10 +92,9 @@ export async function getStaticPaths() {
 export async function getStaticProps() {
   //const res = await fetch(`http://localhost:3000/content/blog/{params.id}.mdx`);
   /*const res = await fetch(
-    `http://localhost:3000/content/blog/angular/angular.mdx`
+    `http://localhost:3000/content/blog/angular/index.mdx`
   );*/
-  const res = await fetch(`http://localhost:3000/content/blog/medium/medium.mdx`);
-  //const res = await fetch(`http://localhost:3000/content/blog/test.mdx`);
+  const res = await fetch(`http://localhost:3000/content/blog/medium/index.mdx`);
   const source = await res.text();
 
   const mdxSource = await serialize(source, {
