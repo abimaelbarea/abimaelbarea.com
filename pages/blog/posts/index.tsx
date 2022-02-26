@@ -11,6 +11,7 @@ const CSSVariables = styled.div`
   --color: black;
 `;
 
+
 const Code = (props: any) => {
   const retrieveLanguage = (className: string) => {
     return className.split("-").pop();
@@ -49,7 +50,7 @@ const A = styled.a`
 `;
 
 const LI = styled.li`
-  color: var(--color);
+  color: var(--color); 
 `;
 
 const components = {
