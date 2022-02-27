@@ -3,6 +3,8 @@
 
 import type { AppProps } from "next/app";
 import Link from "next/link";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import "../styles/app.css";
 import "../styles/globals.css";
 import "../styles/theme.css";
@@ -13,6 +15,9 @@ import "../styles/theme.css";
 // Add newsletter
 // Add about
 // Include font icons
+
+
+// GRID ROWS 3!!!!!!!!!!!!! 
 
 const Header = () => {
   return (
@@ -58,15 +63,20 @@ const Footer = () => {
   );
 };
 
+const queryClient = new QueryClient();
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <div className="app">
-      <Header />
-      <main className="app__content">
-        <Component {...pageProps} />
-      </main>
-      <Footer />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="app">
+        <Header />
+        <main className="app__content">
+          <Component {...pageProps} />
+        </main>
+        <Footer />
+        <ReactQueryDevtools initialIsOpen={false} />
+      </div>
+    </QueryClientProvider>
   );
 };
 

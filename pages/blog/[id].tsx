@@ -26,7 +26,6 @@ import {
 // Footer -> categories with some chips??
 
 const Post = ({ source }: any) => {
-  console.log(source.frontmatter);
   return (
     <article>
       <header>
