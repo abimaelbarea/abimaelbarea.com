@@ -10,6 +10,7 @@ body {
   background-color: var(--bg-color);
 }
 
+/* Explore here the possibility of CSS grid */
 #__next {
   height: 100%;
   width: 60%;
@@ -34,16 +35,12 @@ body {
 }
 
 h1 {
-  margin: 1.5em 2em;
-
   font-size: 2em;
   font-weight: 500;
   color: var(--h1-color);
 }
 
 h2 {
-  margin: 1em 3em;
-
   font-size: 1.5em;
   font-weight: 400;
   color: var(--h2-color);
@@ -70,8 +67,6 @@ h6 {
 }
 
 p {
-  margin: 0.5em 3em;
-
   font-weight: 200;
   color: var(--p-color);
 }
@@ -89,41 +84,18 @@ li {
   color: var(--p-color);
 }
 
+/*
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: #325b97;
-    --secondary-color: #9cafeb;
+ img -> take a look to the sizing - not sure
+ blockquote -> danger, warning, and so on (look Kent C. Dodds)
+ br
+ em
+ ol
+ strong
+ ul
+ table ********* try the one that I'm working on but vertical
+ 
+ syntax-highlighter theme
+ syntax-highlighter copy code
 
-    --bg-color: #fff;
-
-    --h1-color: #000;
-    --h2-color: #000;
-    --h3-color: #000;
-    --h4-color: #000;
-    --h5-color: #000;
-    --h6-color: #000;
-    --p-color: #000;
-
-    --a-color: hsl(199, 69%, 67%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: hsl(256, 95.2%, 75.7%);
-    --secondary-color: hsl(174, 100%, 42%);
-
-    --bg-color: hsl(0, 0%, 11%);
-
-    --h1-color: hsl(0, 0%, 100%);
-    --h2-color: hsl(271, 87%, 90%);
-    --h3-color: #fff;
-    --h4-color: #fff;
-    --h5-color: #fff;
-    --h6-color: #fff;
-    --p-color: hsl(0, 0%, 100%);
-
-    --a-color: hsl(199, 69%, 67%);
-  }
-}
+*/

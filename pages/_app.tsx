@@ -1,6 +1,7 @@
 import type { AppProps } from "next/app";
 import Link from "next/link";
 import "../styles/globals.css";
+import "../styles/theme.css";
 
 // Add newsletter
 // Add about

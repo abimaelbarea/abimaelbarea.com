@@ -1,15 +1,14 @@
 import { MDXRemote } from "next-mdx-remote";
+import Image from "next/image";
 import { MDXComponentMapper, MDXSerializer } from "../../../utils/mdx.utils";
 
 // -------------------------------------------------------------
 
-// Find a fucking good typography using google fonts
 // how to make to themes??
 // variables css - find a good way to structure
 
 // -------------------------------------------------------------
 
-// Remove css modules from the bundle
 // Good names for articles in the content folder
 // Load an article from a remote server - properly!!!
 // Fix reload nextjs + styled components
@@ -20,7 +19,15 @@ const Post = ({ source }: any) => {
   console.log(source.frontmatter);
   return (
     <article>
-      <MDXRemote {...source} components={MDXComponentMapper} />
+      <header>
+        <h1>{source.frontmatter.title}</h1>
+        <Image src={source.frontmatter.headline} width={1000} height={420} />
+        <p>{source.frontmatter.subtitle}</p>
+        <p>{source.frontmatter.date}</p>
+      </header>
+      <main>
+        <MDXRemote {...source} components={MDXComponentMapper} />
+      </main>
     </article>
   );
 };
@@ -45,12 +52,12 @@ export async function getStaticPaths() {
  */
 export async function getStaticProps() {
   //const res = await fetch(`http://localhost:3000/content/blog/{params.id}.mdx`);
-  const res = await fetch(
-    `http://localhost:3000/content/blog/angular/index.mdx`
-  );
   /*const res = await fetch(
-    `http://localhost:3000/content/blog/medium/index.mdx`
+    `http://localhost:3000/content/blog/angular/index.mdx`
   );*/
+  const res = await fetch(
+    `http://localhost:3000/content/blog/medium/index.mdx`
+  );
   const source = await res.text();
 
   const mdxSource = await MDXSerializer(source);
