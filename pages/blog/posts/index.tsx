@@ -11,8 +11,6 @@ import { MDXComponentMapper, MDXSerializer } from "../../../utils/mdx.utils";
 
 // Good names for articles in the content folder
 // Load an article from a remote server - properly!!!
-// Fix reload nextjs + styled components
-// Document title - use the content on metadata
 // RSS
 
 const Post = ({ source }: any) => {
@@ -28,6 +26,7 @@ const Post = ({ source }: any) => {
       <main>
         <MDXRemote {...source} components={MDXComponentMapper} />
       </main>
+      <footer>Categories</footer>
     </article>
   );
 };
