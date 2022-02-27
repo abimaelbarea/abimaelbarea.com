@@ -1,16 +1,170 @@
 html,
 body {
-  padding: 0;
+  height: 100%;
+  width: 100%;
+
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  padding: 0;
+
+  font-family: Poppins, Roboto, Helvetica Neue, sans-serif;
+  background-color: var(--bg-color);
+}
+
+/*************************************************
+  Headlines
+*************************************************/
+
+h1 {
+  font-size: 2em;
+  font-weight: 500;
+  color: var(--h1-color);
+}
+
+h2 {
+  font-size: 1.7em;
+  font-weight: 400;
+  color: var(--h2-color);
+}
+
+h3 {
+  font-weight: 300;
+  color: var(--h3-color);
+}
+
+h4 {
+  font-weight: 300;
+  color: var(--h4-color);
+}
+
+h5 {
+  font-weight: 300;
+  color: var(--h5-color);
+}
+
+h6 {
+  font-weight: 300;
+  color: var(--h6-color);
+}
+
+/*************************************************
+  Paragraph
+*************************************************/
+
+p {
+  font-weight: 200;
+  color: var(--p-color);
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  font-weight: 200;
+  color: var(--a-color);
+
+  cursor: pointer;
+  text-decoration: underline;
 }
 
-* {
-  box-sizing: border-box;
+/*************************************************
+  Lists
+*************************************************/
+
+li {
+  font-weight: 200;
+  color: var(--p-color);
 }
+
+/*************************************************
+  Tables
+*************************************************/
+
+table {
+  margin: 2em auto;
+}
+
+th,
+td {
+  padding: 0.5em 0.5em;
+  border-bottom: 1px solid var(--p-color);
+
+  text-align: center;
+}
+
+th {
+  font-weight: 300;
+  color: var(--table-head-color);
+}
+
+td {
+  font-weight: 200;
+  color: var(--p-color);
+}
+
+/*************************************************
+  Info Box
+*************************************************/
+
+blockquote,
+.callout {
+  margin: 0;
+  padding: 1em 2em;
+  display: block;
+}
+
+blockquote {
+  background: hsl(0, 0%, 25%);
+}
+
+.callout {
+  border-left: 0.5em solid;
+  border-right: 0.5em solid;
+}
+
+/*************************************************
+  Content by error type
+*************************************************/
+
+.--error {
+  background: hsl(0deg 73% 78%);
+  border-color: hsl(0deg 98% 17%);
+}
+
+.--error p,
+.--error a {
+  color: hsl(0deg 98% 17%);
+}
+
+.--info {
+  background: hsl(108deg 73% 78%);
+  border-color: hsl(108deg 98% 17%);
+}
+
+.--info p,
+.--info a {
+  color: hsl(108deg 98% 17%);
+}
+
+.--warn {
+  background: hsl(62deg 73% 78%);
+  border-color: hsl(62deg 98% 17%);
+}
+
+.--warn p,
+.--warn a {
+  color: hsl(62deg 98% 17%);
+}
+
+/*
+
+ img -> take a look to the sizing - not sure
+ img -> center 
+
+ br
+ em
+ strong
+
+ ol
+ ul
+
+ table ********* try the one that I'm working on but vertical
+ tbale -> fix width + scroll
+
+*/

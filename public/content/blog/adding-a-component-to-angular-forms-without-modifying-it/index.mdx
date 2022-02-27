@@ -1,0 +1,280 @@
+---
+title: Adding a Component to Angular Forms WITHOUT Modifying it
+subtitle: Forms in a cool way
+headline: http://localhost:3000/content/blog/adding-a-component-to-angular-forms-without-modifying-it/main.png
+description: Explanation about forms
+date: "2021-12-30"
+categories:
+  - angular
+meta:
+  keywords:
+    - angular
+    - webdev
+    - components
+    - tutorial
+---
+
+[In the previous article](https://dev.to/abimaelbarea/how-to-make-a-component-compatible-with-angular-forms-5ac7), I explored and detailed how to make a component compatible with the Angular Form system. As part of this one, I would like to explore making it **without modifying the existing component**. 
+
+## Scenario
+
+It's common to find ourselves using an existing component from a third-party lib or even one that's been in the project for a long time. 
+
+In those situations, we would like to preserve the original implementation of the component without adding some unnecessary complexity to itself.
+
+## Angular Solution
+
+How did angular make an [input element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) compatible with their form system? They couldn't modify the implementation of the standard.
+
+Let's take a look into the Angular code... This is an extract of the code used for [making an input checkbox compatible with Angular forms](https://github.com/angular/angular/blob/master/packages/forms/src/directives/checkbox_value_accessor.ts):
+
+```typescript
+@Directive({
+  selector:
+      'input[type=checkbox][formControlName],input[type=checkbox][formControl],input[type=checkbox][ngModel]',
+  host: {'(change)': 'onChange($event.target.checked)', '(blur)': 'onTouched()'},
+  providers: [CHECKBOX_VALUE_ACCESSOR]
+})
+export class CheckboxControlValueAccessor extends BuiltInControlValueAccessor implements
+    ControlValueAccessor {
+  /**
+   * Sets the "checked" property on the input element.
+   * @nodoc
+   */
+  writeValue(value: any): void {
+    this.setProperty('checked', value);
+  }
+}
+```
+
+Do you see that? **They are using directives** to make it possible. A brilliant way of using directives.   
+
+-----
+
+## Component
+
+Let's explore the solution with a simplified version of the component used in the previous article.
+
+![Image description](http://localhost:3000/content/blog/angular/component.png)
+
+## Component Implementation
+
+Component Code:
+
+```typescript
+import { Component, EventEmitter } from '@angular/core';
+
+export enum Mood {
+  Red = 'red',
+  Green = 'green',
+}
+
+@Component({
+  selector: 'app-custom-component-and-directive',
+  templateUrl: './custom-component-and-directive.component.html',
+  styleUrls: ['./custom-component-and-directive.component.scss'],
+})
+export class CustomComponentAndDirectiveComponent {
+  /* Reference to the Enum to be used in the template */
+  readonly moodRef = Mood;
+  disable: boolean = false;
+  selected: Mood = Mood.Green;
+
+  /* Simulating an standard output of a component */
+  onChange: EventEmitter<Mood> = new EventEmitter();
+
+  updateState(selectedItem: Mood): void {
+    this.selected = selectedItem; // Updating internal state
+    this.onChange.emit(this.selected); // 'publish' the new state
+  }
+}
+```
+
+Template code: 
+
+```html
+<p>How do you feel?</p>
+
+<ng-container *ngIf="!disable; else disabledTemplate">
+  <button
+    [ngClass]="{
+      custom__button__red: true,
+      'custom__button--selected': selected === moodRef.Red
+    }"
+    (click)="updateState(moodRef.Red)"
+  >
+    Red
+  </button>
+  <button
+    [ngClass]="{
+      custom__button__green: true,
+      'custom__button--selected': selected === moodRef.Green
+    }"
+    (click)="updateState(moodRef.Green)"
+  >
+    Green
+  </button>
+</ng-container>
+
+<ng-template #disabledTemplate>
+  <p>I'm disabled</p>
+</ng-template>
+```
+
+SCSS:
+
+```CSS
+.custom__button {
+  &__red {
+    background-color: red;
+  }
+  &__green {
+    background-color: green;
+  }
+
+  &--selected {
+    margin: 1em;
+    border: solid 5px black;
+  }
+}
+
+```
+
+## Directive
+
+To add that functionality while keeping the origin behavior, we will build this directive on top of it and ship it with the component module.
+
+As you can see, a lot of boilerplate needs to be added, but we are just doing three things:
+
+- Defining the scope of the directive (selector)
+- Accessing the component's output and input 
+- Implementing Control Value Accessor
+
+```typescript   
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Directive, OnDestroy, forwardRef } from '@angular/core';
+import { Subject, filter, takeUntil } from 'rxjs';
+
+import { CustomComponentAndDirectiveComponent } from './custom-component-and-directive.component';
+
+@Directive({
+  // Indicates the component that the directive is used on
+  selector: 'app-custom-component-and-directive',
+  providers: [
+    // This part is very important to register the class as a ControlValueAccessor one
+    {
+      provide: NG_VALUE_ACCESSOR,
+      // This reference the class that implements Control Value Accessor
+      useExisting: forwardRef(() => CustomComponentDirective),
+      multi: true,
+    },
+  ],
+})
+export class CustomComponentDirective
+  implements ControlValueAccessor, OnDestroy
+{
+  private readonly destroyed$ = new Subject<void>();
+
+  /**
+   * @param element Reference to the component instance
+   */
+  constructor(private readonly element: CustomComponentAndDirectiveComponent) {
+    this.listenComponentChanges();
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed$.next();
+    this.destroyed$.complete();
+  }
+
+  /**
+   * Subscribes to the component output and updates the internal state
+   */
+  private listenComponentChanges(): void {
+    if (!this.element) {
+      return;
+    }
+
+    /**
+     * Event emitter is an Observable that emits events.
+     *
+     * Take a look on the definition:
+     *  - export declare interface EventEmitter<T> extends Subject<T> { }
+     * */
+    this.element.onChange
+      .pipe(
+        filter(() => this.onChange !== null), // check that we have the correct ref to the callback
+        takeUntil(this.destroyed$)
+      )
+      .subscribe((value) => {
+        this.onChange(value);
+      });
+  }
+
+  /***********************************************************************
+   * Control Value Accessor Implementation
+   ***********************************************************************/
+
+  private onChange: any;
+  private onTouch: any;
+
+  // Invoked by angular - update internal state
+  writeValue(obj: any): void {
+    this.element.selected = obj; // Updating component internal state
+  }
+
+  // Invoked by angular - callback function for changes
+  registerOnChange(fn: any): void {
+    this.onChange = fn;
+  }
+
+  // Invoked by angular - callback function for touch events
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  // Invoked by angular - update disabled state
+  setDisabledState?(isDisabled: boolean): void {
+    this.element.disable = isDisabled; // Updating component status
+  }
+}
+
+```
+
+-----
+
+## Reactive Form usage
+
+The component is compatible with the directives: [formControlName](https://angular.io/api/forms/FormControlName) and [formControl](https://angular.io/api/forms/FormControl).
+
+```html
+<form [formGroup]="formGroup">
+  <app-custom-component-and-directive
+    [formControlName]="controlsRef.Mood"
+  ></app-custom-component-and-directive>
+</form>
+```
+
+## Template Driven Form usage
+
+The component is also compatible with [ngModel](https://angular.io/api/forms/NgModel) property:
+
+```html
+<form>
+  <app-custom-component-and-directive
+    [disabled]="disabled"
+    [(ngModel)]="selectedMood"
+    [ngModelOptions]="{ standalone: true }"
+  ></app-custom-component-and-directive>
+</form>
+```
+
+-----
+
+## Full Example
+
+The detailed implementation is in one of my Github repos:
+
+- [Component](https://github.com/abimaelbarea/angularTutorials/tree/master/src/app/shared/custom-component-and-directive)
+- [Reactive Form usage](https://github.com/abimaelbarea/angularTutorials/tree/master/src/app/reactive-forms)
+- [Template Driven Form usage](https://github.com/abimaelbarea/angularTutorials/tree/master/src/app/template-forms)
