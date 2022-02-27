@@ -1,0 +1,57 @@
+.app {
+  display: grid;
+  grid-template-columns: 25% 50% 25%;
+  transition: 0.5s;
+}
+
+.app > * {
+  grid-column-start: 2;
+  width: inherit;
+}
+
+.app__header {
+  position: sticky;
+  top: 0;
+  height: 3em;
+
+  /* Content goes under */
+  z-index: 1;
+
+  /* While scrolling under */
+  background-color: var(--bg-color);
+}
+
+.app__header nav,
+.app__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.app__content {
+  display: block;
+  overflow: hidden;
+}
+
+@media only screen and (max-width: 1200px) {
+  .app {
+    grid-template-columns: 20% 60% 20%;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .app {
+    grid-template-columns: 15% 70% 15%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .app {
+    grid-template-columns: 10% 80% 10%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .app {
+    grid-template-columns: 5% 90% 5%;
+  }
+}
