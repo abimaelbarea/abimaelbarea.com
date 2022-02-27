@@ -2,19 +2,32 @@ import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 import { MDXComponentMapper, MDXSerializer } from "../../../utils/mdx.utils";
 
+// Module with styles for the header
+// Article styles width
+// MAC OS - article mode -> understand better
+
+// Copy Dev.to but in the right side and mobile bottom!!!
+
+// Share -> share on social media: Twitter, Facebook, Linkedin?
+// Share -> copy link
+// Share -> rss feed
+// Share -> subscribe to newsletter
+// Share -> send by email
+
+// Footer -> categories with some chips??
+
 // Good names for articles in the content folder
 // Load an article from a remote server - properly!!!
-// RSS
 
 const Post = ({ source }: any) => {
   console.log(source.frontmatter);
   return (
     <article>
       <header>
-        <h1>{source.frontmatter.title}</h1>
-        <Image src={source.frontmatter.headline} width={1000} height={420} />
-        <p>{source.frontmatter.subtitle}</p>
         <p>{source.frontmatter.date}</p>
+        <h1>{source.frontmatter.title}</h1>
+        <p>{source.frontmatter.subtitle}</p>
+        <Image src={source.frontmatter.headline} width={1000} height={420} />
       </header>
       <main>
         <MDXRemote {...source} components={MDXComponentMapper} />
