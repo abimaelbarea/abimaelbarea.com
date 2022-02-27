@@ -12,13 +12,31 @@ body {
 
 /* Explore here the possibility of CSS grid */
 #__next {
+  display: flex;
+  flex-direction: column;
   height: 100%;
   width: 60%;
 
   margin: 0 20%;
 }
 
-@media screen and (max-width: 1200px) {  
+#__next > header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: inherit;
+  height: 3em;
+  z-index: 1;
+  align-items: center;
+  background-color: var(--bg-color);
+}
+
+#__next > main {
+  flex: 1;
+  padding-top: 2em;
+}
+
+@media screen and (max-width: 1200px) {
   #__next {
     width: 70%;
 
@@ -26,7 +44,7 @@ body {
   }
 }
 
-@media screen and (max-width: 800px) {  
+@media screen and (max-width: 800px) {
   #__next {
     width: 80%;
 
@@ -41,7 +59,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5em;
+  font-size: 1.7em;
   font-weight: 400;
   color: var(--h2-color);
 }
@@ -84,18 +102,43 @@ li {
   color: var(--p-color);
 }
 
+table {
+  margin: 2em auto;
+}
+
+th,
+td {
+  padding: 0.5em 0.5em;
+  border-bottom: 1px solid var(--p-color);
+
+  text-align: center;
+}
+
+th {
+  font-weight: 300;
+  color: var(--table-head-color);
+}
+
+td {
+  font-weight: 200;
+  color: var(--p-color);
+}
+
 /*
 
  img -> take a look to the sizing - not sure
+ img -> center 
+
  blockquote -> danger, warning, and so on (look Kent C. Dodds)
+
  br
  em
- ol
  strong
+
+ ol
  ul
+
  table ********* try the one that I'm working on but vertical
- 
- syntax-highlighter theme
- syntax-highlighter copy code
+ tbale -> fix width + scroll
 
 */

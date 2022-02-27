@@ -2,13 +2,6 @@ import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 import { MDXComponentMapper, MDXSerializer } from "../../../utils/mdx.utils";
 
-// -------------------------------------------------------------
-
-// how to make to themes??
-// variables css - find a good way to structure
-
-// -------------------------------------------------------------
-
 // Good names for articles in the content folder
 // Load an article from a remote server - properly!!!
 // RSS

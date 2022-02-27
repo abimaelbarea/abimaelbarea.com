@@ -25,7 +25,7 @@
     --bg-color: hsl(0, 0%, 11%);
 
     --h1-color: hsl(0, 0%, 100%);
-    --h2-color: hsl(271, 87%, 90%);
+    --h2-color: #fff;
     --h3-color: #fff;
     --h4-color: #fff;
     --h5-color: #fff;
@@ -33,5 +33,6 @@
     --p-color: hsl(0, 0%, 100%);
 
     --a-color: hsl(199, 69%, 67%);
+    --table-head-color: hsl(271, 87%, 90%);
   }
 }
