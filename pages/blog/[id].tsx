@@ -8,6 +8,9 @@ import {
   MDXSerializer
 } from "../../utils/mdx.utils";
 
+// Add thumbnail image to the blog post
+// Add categories and subcategories following my approach
+
 // Module with styles for the header
 // Article styles width
 // MAC OS - article mode -> understand better
@@ -51,15 +54,10 @@ export async function getStaticPaths() {
     return { params: { id: post.path } };
   });
 
-  // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
   return { paths, fallback: false };
 }
 
-/**
- * https://www.npmjs.com/package/next-mdx-remote
- * @returns
- */
 export async function getStaticProps({ params }: any) {
   const source = await MDXFetcher(params.id);
   const mdxSource = await MDXSerializer(source);
