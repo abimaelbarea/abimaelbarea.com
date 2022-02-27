@@ -17,4 +17,11 @@ const MDXSerializer = (source: string) =>
     parseFrontmatter: true,
   });
 
-export { MDXComponentMapper, MDXSerializer };
+const MDXFetcher = async (path: string) => {
+  const res = await fetch(
+    `http://localhost:3000/content/blog/${path}/index.mdx`
+  );
+  return res.text();
+};
+
+export { MDXComponentMapper, MDXSerializer, MDXFetcher };

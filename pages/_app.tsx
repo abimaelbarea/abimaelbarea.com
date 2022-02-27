@@ -19,7 +19,7 @@ const Header = () => {
     <header className="app__header">
       <nav>
         <Link href="/">Abimael Barea</Link>
-        <div>
+        <div className="app__header-menu">
           <Link href="/blog">Blog</Link>
           <a
             href="https://github.com/abimaelbarea/abimaelbarea.com"
@@ -58,7 +58,7 @@ const Footer = () => {
   );
 };
 
-function MyApp({ Component, pageProps }: AppProps) {
+const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <div className="app">
       <Header />
@@ -68,6 +68,6 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Footer />
     </div>
   );
-}
+};
 
 export default MyApp;

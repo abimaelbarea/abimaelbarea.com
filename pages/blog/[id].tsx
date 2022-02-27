@@ -1,6 +1,12 @@
+/* eslint-disable react/jsx-key */
+
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
-import { MDXComponentMapper, MDXSerializer } from "../../../utils/mdx.utils";
+import {
+  MDXComponentMapper,
+  MDXFetcher,
+  MDXSerializer
+} from "../../utils/mdx.utils";
 
 // Module with styles for the header
 // Article styles width
@@ -15,9 +21,6 @@ import { MDXComponentMapper, MDXSerializer } from "../../../utils/mdx.utils";
 // Share -> send by email
 
 // Footer -> categories with some chips??
-
-// Good names for articles in the content folder
-// Load an article from a remote server - properly!!!
 
 const Post = ({ source }: any) => {
   console.log(source.frontmatter);
@@ -39,7 +42,6 @@ const Post = ({ source }: any) => {
 
 export default Post;
 
-/*
 export async function getStaticPaths() {
   // Call an external API endpoint to get posts
   const res = await fetch("http://localhost:3000/content/blog/index.json");
@@ -49,22 +51,13 @@ export async function getStaticPaths() {
   // { fallback: false } means other routes should 404.
   return { paths: posts, fallback: false };
 }
-*/
 
 /**
  * https://www.npmjs.com/package/next-mdx-remote
  * @returns
  */
-export async function getStaticProps() {
-  //const res = await fetch(`http://localhost:3000/content/blog/{params.id}.mdx`);
-  /*const res = await fetch(
-    `http://localhost:3000/content/blog/angular/index.mdx`
-  );*/
-  const res = await fetch(
-    `http://localhost:3000/content/blog/medium/index.mdx`
-  );
-  const source = await res.text();
-
+export async function getStaticProps({ params }: any) {
+  const source = await MDXFetcher(params.id);
   const mdxSource = await MDXSerializer(source);
   return { props: { source: mdxSource } };
 }
