@@ -18,5 +18,15 @@
     "date": "2021-12-30",
     "categories": ["frameworks"],
     "keywords": ["frameworks", "webdev"]
+  },
+  {
+    "title": "How to create a blog",
+    "subtitle": "Decisitions and assumtions during the blog creation",
+    "headline": "http://localhost:3000/content/blog/exploring-the-front-end-ecosystems-by-numbers/main.png",
+    "description": "",
+    "path": "how-to-create-a-blog",
+    "date": "2021-12-30",
+    "categories": ["architecture"],
+    "keywords": ["frameworks", "webdev"]
   }
 ]
