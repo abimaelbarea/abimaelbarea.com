@@ -47,9 +47,13 @@ export async function getStaticPaths() {
   const res = await fetch("http://localhost:3000/content/blog/index.json");
   const posts = await res.json();
 
+  const paths = posts.map((post: any) => {
+    return { params: { id: post.path } };
+  });
+
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
-  return { paths: posts, fallback: false };
+  return { paths, fallback: false };
 }
 
 /**

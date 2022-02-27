@@ -1,4 +1,22 @@
 [
-  { "params": { "id": "exploring-the-front-end-ecosystems-by-numbers" } },
-  { "params": { "id": "adding-a-component-to-angular-forms-without-modifying-it" } }
+  {
+    "title": "Adding a Component to Angular Forms WITHOUT Modifying it",
+    "subtitle": "Forms in a cool way",
+    "headline": "http://localhost:3000/content/blog/adding-a-component-to-angular-forms-without-modifying-it/main.png",
+    "description": "Explanation about forms",
+    "path": "adding-a-component-to-angular-forms-without-modifying-it",
+    "date": "2021-12-30",
+    "categories": ["angular", "forms"],
+    "keywords": ["angular", "webdev", "components", "tutorial"]
+  },
+  {
+    "title": "Exploring the Front-end Ecosystems by Numbers",
+    "subtitle": "A deep comparison of Angular, React, and Vue",
+    "headline": "http://localhost:3000/content/blog/exploring-the-front-end-ecosystems-by-numbers/main.png",
+    "description": "A deep comparison of Angular, React, and Vue",
+    "path": "exploring-the-front-end-ecosystems-by-numbers",
+    "date": "2021-12-30",
+    "categories": ["frameworks"],
+    "keywords": ["frameworks", "webdev"]
+  }
 ]

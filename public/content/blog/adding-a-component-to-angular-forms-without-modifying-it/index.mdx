@@ -6,19 +6,18 @@ description: Explanation about forms
 date: "2021-12-30"
 categories:
   - angular
-meta:
-  keywords:
-    - angular
-    - webdev
-    - components
-    - tutorial
+keywords:
+  - angular
+  - webdev
+  - components
+  - tutorial
 ---
 
-[In the previous article](https://dev.to/abimaelbarea/how-to-make-a-component-compatible-with-angular-forms-5ac7), I explored and detailed how to make a component compatible with the Angular Form system. As part of this one, I would like to explore making it **without modifying the existing component**. 
+[In the previous article](https://dev.to/abimaelbarea/how-to-make-a-component-compatible-with-angular-forms-5ac7), I explored and detailed how to make a component compatible with the Angular Form system. As part of this one, I would like to explore making it **without modifying the existing component**.
 
 ## Scenario
 
-It's common to find ourselves using an existing component from a third-party lib or even one that's been in the project for a long time. 
+It's common to find ourselves using an existing component from a third-party lib or even one that's been in the project for a long time.
 
 In those situations, we would like to preserve the original implementation of the component without adding some unnecessary complexity to itself.
 
@@ -31,25 +30,30 @@ Let's take a look into the Angular code... This is an extract of the code used f
 ```typescript
 @Directive({
   selector:
-      'input[type=checkbox][formControlName],input[type=checkbox][formControl],input[type=checkbox][ngModel]',
-  host: {'(change)': 'onChange($event.target.checked)', '(blur)': 'onTouched()'},
-  providers: [CHECKBOX_VALUE_ACCESSOR]
+    "input[type=checkbox][formControlName],input[type=checkbox][formControl],input[type=checkbox][ngModel]",
+  host: {
+    "(change)": "onChange($event.target.checked)",
+    "(blur)": "onTouched()",
+  },
+  providers: [CHECKBOX_VALUE_ACCESSOR],
 })
-export class CheckboxControlValueAccessor extends BuiltInControlValueAccessor implements
-    ControlValueAccessor {
+export class CheckboxControlValueAccessor
+  extends BuiltInControlValueAccessor
+  implements ControlValueAccessor
+{
   /**
    * Sets the "checked" property on the input element.
    * @nodoc
    */
   writeValue(value: any): void {
-    this.setProperty('checked', value);
+    this.setProperty("checked", value);
   }
 }
 ```
 
-Do you see that? **They are using directives** to make it possible. A brilliant way of using directives.   
+Do you see that? **They are using directives** to make it possible. A brilliant way of using directives.
 
------
+---
 
 ## Component
 
@@ -62,17 +66,17 @@ Let's explore the solution with a simplified version of the component used in th
 Component Code:
 
 ```typescript
-import { Component, EventEmitter } from '@angular/core';
+import { Component, EventEmitter } from "@angular/core";
 
 export enum Mood {
-  Red = 'red',
-  Green = 'green',
+  Red = "red",
+  Green = "green",
 }
 
 @Component({
-  selector: 'app-custom-component-and-directive',
-  templateUrl: './custom-component-and-directive.component.html',
-  styleUrls: ['./custom-component-and-directive.component.scss'],
+  selector: "app-custom-component-and-directive",
+  templateUrl: "./custom-component-and-directive.component.html",
+  styleUrls: ["./custom-component-and-directive.component.scss"],
 })
 export class CustomComponentAndDirectiveComponent {
   /* Reference to the Enum to be used in the template */
@@ -90,7 +94,7 @@ export class CustomComponentAndDirectiveComponent {
 }
 ```
 
-Template code: 
+Template code:
 
 ```html
 <p>How do you feel?</p>
@@ -147,19 +151,19 @@ To add that functionality while keeping the origin behavior, we will build this 
 As you can see, a lot of boilerplate needs to be added, but we are just doing three things:
 
 - Defining the scope of the directive (selector)
-- Accessing the component's output and input 
+- Accessing the component's output and input
 - Implementing Control Value Accessor
 
-```typescript   
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Directive, OnDestroy, forwardRef } from '@angular/core';
-import { Subject, filter, takeUntil } from 'rxjs';
+```typescript
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Directive, OnDestroy, forwardRef } from "@angular/core";
+import { Subject, filter, takeUntil } from "rxjs";
 
-import { CustomComponentAndDirectiveComponent } from './custom-component-and-directive.component';
+import { CustomComponentAndDirectiveComponent } from "./custom-component-and-directive.component";
 
 @Directive({
   // Indicates the component that the directive is used on
-  selector: 'app-custom-component-and-directive',
+  selector: "app-custom-component-and-directive",
   providers: [
     // This part is very important to register the class as a ControlValueAccessor one
     {
@@ -238,10 +242,9 @@ export class CustomComponentDirective
     this.element.disable = isDisabled; // Updating component status
   }
 }
-
 ```
 
------
+---
 
 ## Reactive Form usage
 
@@ -269,7 +272,7 @@ The component is also compatible with [ngModel](https://angular.io/api/forms/NgM
 </form>
 ```
 
------
+---
 
 ## Full Example
 
