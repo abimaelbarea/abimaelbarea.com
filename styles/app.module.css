@@ -3,7 +3,7 @@
   width: 100%;
 }
 
-.app__header {
+.appHeader {
   height: 3em;
   width: inherit;
   position: fixed;
@@ -12,13 +12,13 @@
   background-color: var(--bg-color);
 }
 
-.app__header nav,
-.app__footer {
+.appHeader nav,
+.appFooter {
   display: flex;
   justify-content: space-between;
 }
 
-.app__content {
+.appContent {
   display: block;
   min-height: calc(100% - 8em);
   width: auto;
@@ -27,34 +27,34 @@
   padding-left: 20%;
 }
 
-.app__footer {
+.appFooter {
   height: 5em;
   width: inherit;
 }
 
 @media only screen and (max-width: 1200px) {
-  .app__content {
+  .appContent {
     padding-right: 15%;
     padding-left: 15%;
   }
 }
 
 @media only screen and (max-width: 992px) {
-  .app__content {
+  .appContent {
     padding-right: 5%;
     padding-left: 5%;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .app__content {
+  .appContent {
     padding-right: 5%;
     padding-left: 5%;
   }
 }
 
 @media only screen and (max-width: 600px) {
-  .app__content {
+  .appContent {
     padding-right: 2%;
     padding-left: 2%;
   }

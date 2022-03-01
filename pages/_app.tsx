@@ -5,7 +5,7 @@ import type { AppProps } from "next/app";
 import Link from "next/link";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import "../styles/app.css";
+import styles from "../styles/app.module.css";
 import "../styles/globals.css";
 import "../styles/theme.css";
 
@@ -16,12 +16,9 @@ import "../styles/theme.css";
 // Add about
 // Include font icons
 
-
-// GRID ROWS 3!!!!!!!!!!!!! 
-
 const Header = () => {
   return (
-    <header className="app__header">
+    <header className={styles.appHeader}>
       <nav>
         <Link href="/">Abimael Barea</Link>
         <div className="app__header-menu">
@@ -41,7 +38,7 @@ const Header = () => {
 
 const Footer = () => {
   return (
-    <footer className="app_footer">
+    <footer className={styles.appFooter}>
       <nav>
         <a href="https://twitter.com/abimaelbarea" target="_blank">
           Twitter
@@ -68,9 +65,9 @@ const queryClient = new QueryClient();
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="app">
+      <div className={styles.app}>
         <Header />
-        <main className="app__content">
+        <main className={styles.appContent}>
           <Component {...pageProps} />
         </main>
         <Footer />

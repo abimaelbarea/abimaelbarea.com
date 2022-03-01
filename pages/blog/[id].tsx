@@ -2,6 +2,7 @@
 
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
+import styles from "../../styles/article.module.css";
 import {
   MDXComponentMapper,
   MDXFetcher,
@@ -28,7 +29,7 @@ import {
 const Post = ({ source }: any) => {
   return (
     <article>
-      <header>
+      <header className={styles.articleHeader}>
         <p>{source.frontmatter.date}</p>
         <h1>{source.frontmatter.title}</h1>
         <p>{source.frontmatter.subtitle}</p>
