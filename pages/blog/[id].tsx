@@ -34,9 +34,7 @@ const Post = ({ source }: any) => {
         <p>{source.frontmatter.subtitle}</p>
         <Image src={source.frontmatter.headline} width={1000} height={420} />
       </header>
-      <main>
-        <MDXRemote {...source} components={MDXComponentMapper} />
-      </main>
+      <MDXRemote {...source} components={MDXComponentMapper} />
       <footer>Categories</footer>
     </article>
   );
