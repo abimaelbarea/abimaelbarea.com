@@ -3,15 +3,19 @@
 import type { NextPage } from "next";
 import Link from "next/link";
 import { useQuery } from "react-query";
-import "../../styles/blog.module.css"; // NOT WORKING!!!
+import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
 
 const generatePath = (path: string) => `/blog/${path}`;
 
 const BlogItem = (props: any) => {
   return (
     <Link href={generatePath(props.post.path)}>
-      <div className="blog-item">
-        <p>{props.post.title}</p>
+      <div className={styles.blogItem}>
+        <p>IMAGE</p>
+        <div className={styles.blogItemTitle}>
+          <p>{props.post.date}</p>
+          <p>{props.post.title}</p>
+        </div>
       </div>
     </Link>
   );
@@ -20,13 +24,17 @@ const BlogItem = (props: any) => {
 const Blog: NextPage = (props: any) => {
   const { data } = useQuery("posts", getPosts, { initialData: props.posts });
 
+  // TODO: review how to do this properly with reactQuery
+  if (data?.length === 0) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <>
-      {data &&
-        data.map((post: any, index: number) => (
-          <BlogItem key={index} post={post}></BlogItem>
-        ))}
-    </>
+    <div className={styles.blog}>
+      {data.map((post: any, index: number) => (
+        <BlogItem key={index} post={post}></BlogItem>
+      ))}
+    </div>
   );
 };
 

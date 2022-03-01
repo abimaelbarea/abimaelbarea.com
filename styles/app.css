@@ -41,8 +41,8 @@
 
 @media only screen and (max-width: 992px) {
   .app__content {
-    padding-right: 10%;
-    padding-left: 10%;
+    padding-right: 5%;
+    padding-left: 5%;
   }
 }
 
