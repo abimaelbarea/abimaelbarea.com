@@ -9,12 +9,12 @@
 }
 
 .articleHeader {
-  background-color: yellow;
+  border: 3px solid green;
 }
 
 .articleShare {
   min-width: 5em;
-  background-color: green;
+  border: 1px solid white;
 }
 
 @media only screen and (max-width: 1200px) {
