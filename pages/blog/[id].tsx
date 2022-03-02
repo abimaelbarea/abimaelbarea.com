@@ -28,15 +28,18 @@ import {
 
 const Post = ({ source }: any) => {
   return (
-    <article>
-      <header className={styles.articleHeader}>
-        <p>{source.frontmatter.date}</p>
-        <h1>{source.frontmatter.title}</h1>
-        <p>{source.frontmatter.subtitle}</p>
-        <Image src={source.frontmatter.headline} width={1000} height={420} />
-      </header>
-      <MDXRemote {...source} components={MDXComponentMapper} />
-      <footer>Categories</footer>
+    <article className={styles.article}>
+      <div className={styles.articleContent}>
+        <header className={styles.articleHeader}>
+          <p>{source.frontmatter.date}</p>
+          <h1>{source.frontmatter.title}</h1>
+          <p>{source.frontmatter.subtitle}</p>
+          <Image src={source.frontmatter.headline} width={1000} height={420} />
+        </header>
+        <MDXRemote {...source} components={MDXComponentMapper} />
+        <footer>Categories</footer>
+      </div>
+      <div className={styles.articleShare}></div>
     </article>
   );
 };

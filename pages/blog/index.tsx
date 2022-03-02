@@ -11,7 +11,7 @@ const BlogItem = (props: any) => {
   return (
     <Link href={generatePath(props.post.path)}>
       <div className={styles.blogItem}>
-        <p>IMAGE</p>
+        <p className={styles.blogItemImage}>IMAGE</p>
         <div className={styles.blogItemTitle}>
           <p>{props.post.date}</p>
           <p>{props.post.title}</p>
