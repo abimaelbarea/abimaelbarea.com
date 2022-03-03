@@ -9,13 +9,6 @@ import styles from "../styles/app.module.css";
 import "../styles/globals.css";
 import "../styles/theme.css";
 
-// how to make to themes??
-// variables css - find a good way to structure
-
-// Add newsletter
-// Add about
-// Include font icons
-
 const Header = () => {
   return (
     <header className={styles.appHeader}>

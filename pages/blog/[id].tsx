@@ -9,23 +9,7 @@ import {
   MDXSerializer
 } from "../../utils/mdx.utils";
 
-// Add thumbnail image to the blog post
-// Add categories and subcategories following my approach
-
-// Module with styles for the header
-// Article styles width
 // MAC OS - article mode -> understand better
-
-// Copy Dev.to but in the right side and mobile bottom!!!
-
-// Share -> share on social media: Twitter, Facebook, Linkedin?
-// Share -> copy link
-// Share -> rss feed
-// Share -> subscribe to newsletter
-// Share -> send by email
-
-// Footer -> categories with some chips??
-
 const Post = ({ source }: any) => {
   return (
     <article className={styles.article}>
