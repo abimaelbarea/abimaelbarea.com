@@ -10,9 +10,26 @@
   top: 0;
   z-index: 1;
   background-color: var(--bg-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.appHeader nav,
+.appHeaderActions{
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.appHeaderActions > * {
+  font-size: 2em;
+}
+
+.appHeaderActions a:hover {
+  color: white;
+}
+
 .appFooter {
   display: flex;
   justify-content: space-between;
@@ -30,6 +47,22 @@
 .appFooter {
   height: 5em;
   width: inherit;
+}
+
+.appFooterNav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.appFooterNav > a {
+  font-size: 2em;
+}
+
+.appFooterNav a:hover {
+  color: white;
 }
 
 @media only screen and (max-width: 1200px) {
