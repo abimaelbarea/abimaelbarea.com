@@ -19,7 +19,7 @@ const MDXSerializer = (source: string) =>
 
 const MDXFetcher = async (path: string) => {
   const res = await fetch(
-    `http://localhost:3000/content/blog/${path}/index.mdx`
+    `http://localhost:3000/content/blog/${path}/readme.mdx`
   );
   return res.text();
 };
