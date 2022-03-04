@@ -23,14 +23,16 @@ import "../styles/theme.css";
 type Theme = "light" | "dark";
 
 type HeaderProps = {
-  onThemeChange: (newTheme: Theme) => void;
+  onThemeChange?: (newTheme: Theme) => void;
 };
 
 const Header = ({ onThemeChange }: HeaderProps) => {
   const [theme, setTheme] = useState(false);
 
   useEffect(() => {
-    onThemeChange(theme ? "light" : "dark");
+    if (onThemeChange) {
+      onThemeChange(theme ? "light" : "dark");
+    }
   }, [theme]);
 
   return (
@@ -81,12 +83,10 @@ const Footer = () => {
 const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [theme, setTheme] = useState<Theme>();
-
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`${styles.app} ${theme}`}>
-        <Header onThemeChange={(newTheme: Theme) => setTheme(newTheme)} />
+      <div className={`${styles.app}`}>
+        <Header />
         <main className={styles.appContent}>
           <Component {...pageProps} />
         </main>

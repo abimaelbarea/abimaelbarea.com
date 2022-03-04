@@ -1,37 +1,57 @@
 /* eslint-disable react/jsx-key */
 
-import type { NextPage } from "next";
+import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import { useQuery } from "react-query";
 import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
 
 const generatePath = (path: string) => `/blog/${path}`;
 
-const BlogItem = (props: any) => {
+type PostInfo = {
+  title: string;
+  subtitle: string;
+  headline: string;
+  description: string;
+  path: string;
+  date: string;
+  categories: string[];
+  keywords: string[];
+};
+
+type BlogItemProps = {
+  post: PostInfo;
+};
+
+const BlogItem = ({ post }: BlogItemProps) => {
   return (
-    <Link href={generatePath(props.post.path)}>
+    <Link href={generatePath(post.path)}>
       <div className={styles.blogItem}>
         <p className={styles.blogItemImage}>IMAGE</p>
         <div className={styles.blogItemTitle}>
-          <p>{props.post.date}</p>
-          <p>{props.post.title}</p>
+          <p>{post.date}</p>
+          <p>{post.title}</p>
         </div>
       </div>
     </Link>
   );
 };
 
-const Blog: NextPage = (props: any) => {
-  const { data } = useQuery("posts", getPosts, { initialData: props.posts });
+type BlogProps = {
+  posts: PostInfo[];
+};
 
-  // TODO: review how to do this properly with reactQuery
-  if (data?.length === 0) {
+const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
+  const { data, isLoading } = useQuery("posts", getPosts, {
+    initialData: posts,
+  });
+
+  if (isLoading) {
     return <div>Loading...</div>;
   }
 
   return (
     <div className={styles.blog}>
-      {data.map((post: any, index: number) => (
+      {data?.map((post: any, index: number) => (
         <BlogItem key={index} post={post}></BlogItem>
       ))}
     </div>
@@ -40,13 +60,13 @@ const Blog: NextPage = (props: any) => {
 
 export default Blog;
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const posts = await getPosts();
   return { props: { posts } };
-}
+};
 
 // Add here more info from medium & dev.to
-const getPosts = async () => {
+const getPosts = async (): Promise<PostInfo[]> => {
   const res = await fetch("http://localhost:3000/content/blog/index.json");
   return res.json();
 };

@@ -1,7 +1,9 @@
 /* eslint-disable react/jsx-key */
 
-import { MDXRemote } from "next-mdx-remote";
+import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
+import { ParsedUrlQuery } from "querystring";
 import styles from "../../styles/article.module.css";
 import {
   MDXComponentMapper,
@@ -9,16 +11,18 @@ import {
   MDXSerializer
 } from "../../utils/mdx.utils";
 
+type PostProps = MDXRemoteSerializeResult;
+
 // MAC OS - article mode -> understand better
-const Post = ({ source }: any) => {
+const Post = ({ frontmatter, ...source }: PostProps) => {
   return (
     <article className={styles.article}>
       <div className={styles.articleContent}>
         <header className={styles.articleHeader}>
-          <p>{source.frontmatter.date}</p>
-          <h1>{source.frontmatter.title}</h1>
-          <p>{source.frontmatter.subtitle}</p>
-          <Image src={source.frontmatter.headline} width={1000} height={420} />
+          <p>{frontmatter?.date}</p>
+          <h1>{frontmatter?.title}</h1>
+          <p>{frontmatter?.subtitle}</p>
+          <Image src={frontmatter?.headline} width={1000} height={420} />
         </header>
         <MDXRemote {...source} components={MDXComponentMapper} />
         <footer>Categories</footer>
@@ -30,7 +34,7 @@ const Post = ({ source }: any) => {
 
 export default Post;
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   // Call an external API endpoint to get posts
   const res = await fetch("http://localhost:3000/content/blog/index.json");
   const posts = await res.json();
@@ -41,10 +45,16 @@ export async function getStaticPaths() {
 
   // { fallback: false } means other routes should 404.
   return { paths, fallback: false };
-}
+};
 
-export async function getStaticProps({ params }: any) {
-  const source = await MDXFetcher(params.id);
+type IParams = ParsedUrlQuery & {
+  id: string;
+};
+
+export const getStaticProps: GetStaticProps = async ({
+  params,
+}: GetStaticPropsContext) => {
+  const source = await MDXFetcher((params as IParams).id);
   const mdxSource = await MDXSerializer(source);
-  return { props: { source: mdxSource } };
-}
+  return { props: { ...mdxSource } };
+};
