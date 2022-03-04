@@ -14,21 +14,22 @@ import {
 type PostProps = MDXRemoteSerializeResult;
 
 // MAC OS - article mode -> understand better
+// Review how to do the time properly
+
 const Post = ({ frontmatter, ...source }: PostProps) => {
   return (
-    <article className={styles.article}>
-      <div className={styles.articleContent}>
+    <div className={styles.articleHolder}>
+      <article className={styles.article}>
         <header className={styles.articleHeader}>
-          <p>{frontmatter?.date}</p>
+          <time>{frontmatter?.date}</time> 
           <h1>{frontmatter?.title}</h1>
-          <p>{frontmatter?.subtitle}</p>
+          <h2>{frontmatter?.subtitle}</h2>
           <Image src={frontmatter?.headline} width={1000} height={420} />
         </header>
         <MDXRemote {...source} components={MDXComponentMapper} />
-        <footer>Categories</footer>
-      </div>
-      <div className={styles.articleShare}></div>
-    </article>
+      </article>
+      <aside className={styles.articleShare}></aside>
+    </div>
   );
 };
 
