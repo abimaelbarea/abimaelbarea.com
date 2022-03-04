@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useQuery } from "react-query";
 import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
 
-const generatePath = (path: string) => `/blog/${path}`;
+const generatePostPath = (path: string) => `/blog/${path}`;
 
 type PostInfo = {
   title: string;
@@ -24,14 +24,14 @@ type BlogItemProps = {
 
 const BlogItem = ({ post }: BlogItemProps) => {
   return (
-    <Link href={generatePath(post.path)}>
-      <div className={styles.blogItem}>
+    <Link href={generatePostPath(post.path)}>
+      <a className={styles.blogItem}>
         <p className={styles.blogItemImage}>IMAGE</p>
         <div className={styles.blogItemTitle}>
           <p>{post.date}</p>
           <p>{post.title}</p>
         </div>
-      </div>
+      </a>
     </Link>
   );
 };

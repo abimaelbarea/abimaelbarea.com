@@ -85,14 +85,12 @@ const queryClient = new QueryClient();
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <div className={`${styles.app}`}>
-        <Header />
-        <main className={styles.appContent}>
-          <Component {...pageProps} />
-        </main>
-        <Footer />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </div>
+      <Header />
+      <main className={styles.appContent}>
+        <Component {...pageProps} />
+      </main>
+      <Footer />
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };

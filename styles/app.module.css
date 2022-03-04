@@ -1,8 +1,3 @@
-.app {
-  height: 100%;
-  width: 100%;
-}
-
 .appHeader {
   height: 3em;
   width: inherit;
@@ -16,7 +11,7 @@
   justify-content: space-between;
 }
 
-.appHeaderActions{
+.appHeaderActions {
   display: flex;
   align-items: center;
   gap: 1em;
