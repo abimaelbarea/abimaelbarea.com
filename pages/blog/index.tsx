@@ -18,11 +18,11 @@ type PostInfo = {
   keywords: string[];
 };
 
-type BlogItemProps = {
+type BlogPostProps = {
   post: PostInfo;
 };
 
-const BlogItem = ({ post }: BlogItemProps) => {
+const BlogPost = ({ post }: BlogPostProps) => {
   return (
     <Link href={generatePostPath(post.path)}>
       <a className={styles.blogItem}>
@@ -52,7 +52,7 @@ const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
   return (
     <div className={styles.blog}>
       {data?.map((post: any, index: number) => (
-        <BlogItem key={index} post={post}></BlogItem>
+        <BlogPost key={index} post={post}></BlogPost>
       ))}
     </div>
   );
