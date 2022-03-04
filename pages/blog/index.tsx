@@ -41,6 +41,7 @@ type BlogProps = {
 };
 
 const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
+  // I should rely here on a selector applying a filter for category
   const { data, isLoading } = useQuery("posts", getPosts, {
     initialData: posts,
   });
@@ -72,6 +73,5 @@ const getPosts = async (): Promise<PostInfo[]> => {
 };
 
 // API - create an API call that handle this
-
 // Glob read directories on blog??
 // fetch all blog posts

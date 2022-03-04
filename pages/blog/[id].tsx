@@ -21,7 +21,7 @@ const Post = ({ frontmatter, ...source }: PostProps) => {
     <div className={styles.articleHolder}>
       <article className={styles.article}>
         <header className={styles.articleHeader}>
-          <time>{frontmatter?.date}</time> 
+          <time>{frontmatter?.date}</time>
           <h1>{frontmatter?.title}</h1>
           <h2>{frontmatter?.subtitle}</h2>
           <Image src={frontmatter?.headline} width={1000} height={420} />
