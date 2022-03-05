@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-key */
 
+import fs from "fs";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
-import { useQuery } from "react-query";
 import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
+import { MDXSerializer } from "../../utils/mdx.utils";
 
 const generatePostPath = (path: string) => `/blog/${path}`;
 
@@ -41,18 +42,9 @@ type BlogProps = {
 };
 
 const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
-  // I should rely here on a selector applying a filter for category
-  const { data, isLoading } = useQuery("posts", getPosts, {
-    initialData: posts,
-  });
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className={styles.blog}>
-      {data?.map((post: any, index: number) => (
+      {posts?.map((post: any, index: number) => (
         <BlogPost key={index} post={post}></BlogPost>
       ))}
     </div>
@@ -62,16 +54,18 @@ const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPosts();
+  const postsDirectory = `${process.cwd()}/content/blog`;
+  const filenames = fs.readdirSync(postsDirectory);
+
+  const postsFiles = filenames.map((postFolder) => {
+    const filePath = `${postsDirectory}/${postFolder}/readme.mdx`;
+    return fs.readFileSync(filePath, "utf8");
+  });
+
+  const postsContent = await Promise.all(
+    postsFiles.map((source) => MDXSerializer(source))
+  );
+  const posts = postsContent.map((post) => post.frontmatter);
+
   return { props: { posts } };
 };
-
-// Add here more info from medium & dev.to
-const getPosts = async (): Promise<PostInfo[]> => {
-  const res = await fetch("http://localhost:3000/content/blog/index.json");
-  return res.json();
-};
-
-// API - create an API call that handle this
-// Glob read directories on blog??
-// fetch all blog posts

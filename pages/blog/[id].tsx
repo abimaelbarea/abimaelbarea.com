@@ -1,14 +1,13 @@
 /* eslint-disable react/jsx-key */
 
+import fs from "fs";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import styles from "../../styles/article.module.css";
 import {
-  MDXComponentMapper,
-  MDXFetcher,
-  MDXSerializer
+  MDXComponentMapper, MDXSerializer
 } from "../../utils/mdx.utils";
 
 type PostProps = MDXRemoteSerializeResult;
@@ -36,12 +35,11 @@ const Post = ({ frontmatter, ...source }: PostProps) => {
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // Call an external API endpoint to get posts
-  const res = await fetch("http://localhost:3000/content/blog/index.json");
-  const posts = await res.json();
-
-  const paths = posts.map((post: any) => {
-    return { params: { id: post.path } };
+  const postsDirectory = `${process.cwd()}/content/blog`;
+  const filenames = fs.readdirSync(postsDirectory);
+  
+  const paths = filenames.map((post: any) => {
+    return { params: { id: post } };
   });
 
   // { fallback: false } means other routes should 404.
@@ -55,7 +53,9 @@ type IParams = ParsedUrlQuery & {
 export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
-  const source = await MDXFetcher((params as IParams).id);
+  const path = `${process.cwd()}/content/blog/${(params as IParams).id}/readme.mdx`;
+  const source = fs.readFileSync(path, "utf8");
+
   const mdxSource = await MDXSerializer(source);
   return { props: { ...mdxSource } };
 };

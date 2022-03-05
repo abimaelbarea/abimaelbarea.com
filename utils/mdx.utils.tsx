@@ -21,11 +21,4 @@ const MDXSerializer = (source: string): Promise<MDXRemoteSerializeResult> =>
     parseFrontmatter: true,
   });
 
-const MDXFetcher = async (path: string): Promise<string> => {
-  const res = await fetch(
-    `http://localhost:3000/content/blog/${path}/readme.mdx`
-  );
-  return res.text();
-};
-
-export { MDXComponentMapper, MDXSerializer, MDXFetcher };
+export { MDXComponentMapper, MDXSerializer };

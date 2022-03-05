@@ -14,8 +14,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { AppProps } from "next/app";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
 import styles from "../styles/app.module.css";
 import "../styles/globals.css";
 import "../styles/theme.css";
@@ -80,18 +78,15 @@ const Footer = () => {
   );
 };
 
-const queryClient = new QueryClient();
-
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <Header />
       <main className={styles.appContent}>
         <Component {...pageProps} />
       </main>
       <Footer />
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+    </>
   );
 };
 
