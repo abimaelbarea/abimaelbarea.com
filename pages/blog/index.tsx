@@ -3,24 +3,15 @@
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
+import { PostInfo } from "../../types/post.types";
 import {
+  contentPaths,
   readContentDirectory,
   readContentFile
 } from "../../utils/fiileSystem.utils";
 import { MDXSerializer } from "../../utils/mdx.utils";
 
 const generatePostPath = (path: string) => `/blog/${path}`;
-
-type PostInfo = {
-  title: string;
-  subtitle: string;
-  headline: string;
-  description: string;
-  path: string;
-  date: string;
-  categories: string[];
-  keywords: string[];
-};
 
 type BlogPostProps = {
   post: PostInfo;
@@ -57,17 +48,12 @@ const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
 export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
-  const postsDirectory = `${process.cwd()}/content/blog`;
-  const names = readContentDirectory(postsDirectory);
-
+  const names = readContentDirectory(contentPaths.posts.folder);
   const postsContent = await Promise.all(
     names
-      .map((postFolder) =>
-        readContentFile(`${postsDirectory}/${postFolder}/readme.mdx`)
-      )
+      .map((postFolder) => readContentFile(contentPaths.posts.item(postFolder)))
       .map(MDXSerializer)
   );
-
   const posts = postsContent.map((post) => post.frontmatter);
   return { props: { posts } };
 };

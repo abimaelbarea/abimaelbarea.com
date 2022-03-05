@@ -5,13 +5,17 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import styles from "../../styles/article.module.css";
+import { PostInfo } from "../../types/post.types";
 import {
+  contentPaths,
   readContentDirectory,
   readContentFile
 } from "../../utils/fiileSystem.utils";
 import { MDXComponentMapper, MDXSerializer } from "../../utils/mdx.utils";
 
-type PostProps = MDXRemoteSerializeResult;
+type PostProps = MDXRemoteSerializeResult & {
+  frontmatter: PostInfo;
+};
 
 // MAC OS - article mode -> understand better
 // Review how to do the time properly
@@ -36,8 +40,7 @@ const Post = ({ frontmatter, ...source }: PostProps) => {
 export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const postsDirectory = `${process.cwd()}/content/blog`;
-  const names = readContentDirectory(postsDirectory);
+  const names = readContentDirectory(contentPaths.posts.folder);
   const paths = names.map((post: any) => {
     return { params: { id: post } };
   });
@@ -53,10 +56,9 @@ type IParams = ParsedUrlQuery & {
 export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
-  const path = `${process.cwd()}/content/blog/${
-    (params as IParams).id
-  }/readme.mdx`;
-  const source = readContentFile(path);
+  const source = readContentFile(
+    contentPaths.posts.item((params as IParams).id)
+  );
   const mdxSource = await MDXSerializer(source);
   return { props: { ...mdxSource } };
 };
