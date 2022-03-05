@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-key */
 
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
 import styles from "../../styles/article.module.css";
 import { PostInfo } from "../../types/post.types";
@@ -12,24 +12,25 @@ import {
 } from "../../utils/fileSystem.utils";
 import { MDXComponentMapper, MDXSerializer } from "../../utils/mdx.utils";
 
-type PostProps = MDXRemoteSerializeResult & {
-  frontmatter: PostInfo;
+type PostProps = {
+  info: PostInfo;
+  source: string;
 };
 
 // MAC OS - article mode -> understand better
 // Review how to do the time properly
 
-const Post = ({ frontmatter, ...source }: PostProps) => {
+const Post = ({ info, source }: PostProps) => {
   return (
     <div className={styles.articleHolder}>
       <article className={styles.article}>
         <header className={styles.articleHeader}>
-          <time>{frontmatter?.date}</time>
-          <h1>{frontmatter?.title}</h1>
-          <h2>{frontmatter?.subtitle}</h2>
-          <Image src={frontmatter?.headline} width={1000} height={420} />
+          <time>{info.date}</time>
+          <h1>{info.title}</h1>
+          <h2>{info.subtitle}</h2>
+          <Image src={info.headline} width={1000} height={420} />
         </header>
-        <MDXRemote {...source} components={MDXComponentMapper} />
+        <MDXRemote compiledSource={source} components={MDXComponentMapper} />
       </article>
       <aside className={styles.articleShare}></aside>
     </div>
@@ -53,5 +54,7 @@ export const getStaticProps: GetStaticProps = async ({
 }: GetStaticPropsContext) => {
   const source = readContentFile(contentPaths.posts.item(params?.id as string));
   const mdxSource = await MDXSerializer(source);
-  return { props: { ...mdxSource } };
+  return {
+    props: { info: mdxSource.frontmatter, source: mdxSource.compiledSource },
+  };
 };
