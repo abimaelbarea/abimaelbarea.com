@@ -3,14 +3,13 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
-import { ParsedUrlQuery } from "querystring";
 import styles from "../../styles/article.module.css";
 import { PostInfo } from "../../types/post.types";
 import {
   contentPaths,
   readContentDirectory,
   readContentFile
-} from "../../utils/fiileSystem.utils";
+} from "../../utils/fileSystem.utils";
 import { MDXComponentMapper, MDXSerializer } from "../../utils/mdx.utils";
 
 type PostProps = MDXRemoteSerializeResult & {
@@ -49,16 +48,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: false };
 };
 
-type IParams = ParsedUrlQuery & {
-  id: string;
-};
-
 export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
-  const source = readContentFile(
-    contentPaths.posts.item((params as IParams).id)
-  );
+  const source = readContentFile(contentPaths.posts.item(params?.id as string));
   const mdxSource = await MDXSerializer(source);
   return { props: { ...mdxSource } };
 };

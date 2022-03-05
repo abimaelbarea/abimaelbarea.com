@@ -8,7 +8,7 @@ import {
   contentPaths,
   readContentDirectory,
   readContentFile
-} from "../../utils/fiileSystem.utils";
+} from "../../utils/fileSystem.utils";
 import { MDXSerializer } from "../../utils/mdx.utils";
 
 const generatePostPath = (path: string) => `/blog/${path}`;
