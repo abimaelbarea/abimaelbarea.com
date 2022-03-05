@@ -1,9 +1,12 @@
 /* eslint-disable react/jsx-key */
 
-import fs from "fs";
 import type { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
+import {
+  readContentDirectory,
+  readContentFile
+} from "../../utils/fiileSystem.utils";
 import { MDXSerializer } from "../../utils/mdx.utils";
 
 const generatePostPath = (path: string) => `/blog/${path}`;
@@ -55,17 +58,16 @@ export default Blog;
 
 export const getStaticProps: GetStaticProps = async () => {
   const postsDirectory = `${process.cwd()}/content/blog`;
-  const filenames = fs.readdirSync(postsDirectory);
-
-  const postsFiles = filenames.map((postFolder) => {
-    const filePath = `${postsDirectory}/${postFolder}/readme.mdx`;
-    return fs.readFileSync(filePath, "utf8");
-  });
+  const names = readContentDirectory(postsDirectory);
 
   const postsContent = await Promise.all(
-    postsFiles.map((source) => MDXSerializer(source))
+    names
+      .map((postFolder) =>
+        readContentFile(`${postsDirectory}/${postFolder}/readme.mdx`)
+      )
+      .map(MDXSerializer)
   );
-  const posts = postsContent.map((post) => post.frontmatter);
 
+  const posts = postsContent.map((post) => post.frontmatter);
   return { props: { posts } };
 };

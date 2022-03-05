@@ -1,14 +1,15 @@
 /* eslint-disable react/jsx-key */
 
-import fs from "fs";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import Image from "next/image";
 import { ParsedUrlQuery } from "querystring";
 import styles from "../../styles/article.module.css";
 import {
-  MDXComponentMapper, MDXSerializer
-} from "../../utils/mdx.utils";
+  readContentDirectory,
+  readContentFile
+} from "../../utils/fiileSystem.utils";
+import { MDXComponentMapper, MDXSerializer } from "../../utils/mdx.utils";
 
 type PostProps = MDXRemoteSerializeResult;
 
@@ -36,9 +37,8 @@ export default Post;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const postsDirectory = `${process.cwd()}/content/blog`;
-  const filenames = fs.readdirSync(postsDirectory);
-  
-  const paths = filenames.map((post: any) => {
+  const names = readContentDirectory(postsDirectory);
+  const paths = names.map((post: any) => {
     return { params: { id: post } };
   });
 
@@ -53,9 +53,10 @@ type IParams = ParsedUrlQuery & {
 export const getStaticProps: GetStaticProps = async ({
   params,
 }: GetStaticPropsContext) => {
-  const path = `${process.cwd()}/content/blog/${(params as IParams).id}/readme.mdx`;
-  const source = fs.readFileSync(path, "utf8");
-
+  const path = `${process.cwd()}/content/blog/${
+    (params as IParams).id
+  }/readme.mdx`;
+  const source = readContentFile(path);
   const mdxSource = await MDXSerializer(source);
   return { props: { ...mdxSource } };
 };
