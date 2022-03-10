@@ -22,9 +22,9 @@ type PostProps = {
 
 const Post = ({ info, source }: PostProps) => {
   return (
-    <div className={styles.articleHolder}>
+    <div className={styles.holder}>
       <article className={styles.article}>
-        <header className={styles.articleHeader}>
+        <header className={styles.header}>
           <time>{info.date}</time>
           <h1>{info.title}</h1>
           <h2>{info.subtitle}</h2>
@@ -32,7 +32,7 @@ const Post = ({ info, source }: PostProps) => {
         </header>
         <MDXRemote compiledSource={source} components={MDXComponentMapper} />
       </article>
-      <aside className={styles.articleShare}></aside>
+      <aside className={styles.share}></aside>
     </div>
   );
 };

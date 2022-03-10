@@ -5,18 +5,18 @@
   cursor: pointer;
 }
 
-.itemImage {
+.image {
   height: 220px;
   background: red;
 }
 
-.itemTitle {
+.title {
   flex-grow: 1;
   border: 1px solid green;
 }
 
 @media only screen and (max-width: 1200px) {
-  .itemImage {
+  .image {
     height: 200px;
   }
 }
@@ -28,9 +28,7 @@
     align-items: center;
   }
 
-  .itemImage {
-    height: 60px;
-    min-width: 60px;
-    background: red;
+  .image {
+    display: none;
   }
 }

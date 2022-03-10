@@ -1,4 +1,4 @@
-.articleHolder {
+.holder {
   display: flex;
   padding-left: 10%;
   padding-right: 10%;
@@ -8,11 +8,11 @@
   overflow: hidden;
 }
 
-.articleHeader {
+.header {
   border: 3px solid green;
 }
 
-.articleShare {
+.share {
   min-width: 5em;
   border: 1px solid white;
 }
@@ -29,7 +29,7 @@
     flex-direction: column;
   }
 
-  .articleShare {
+  .share {
     position: fixed;
     right: 1em;
     bottom: 1em;

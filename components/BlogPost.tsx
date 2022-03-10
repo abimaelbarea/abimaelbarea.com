@@ -12,8 +12,8 @@ const BlogPost = ({ post }: BlogPostProps) => {
   return (
     <Link href={generatePostPath(post.path)}>
       <a className={styles.item}>
-        <p className={styles.itemImage}>IMAGE</p>
-        <div className={styles.itemTitle}>
+        <p className={styles.image}>IMAGE</p>
+        <div className={styles.title}>
           <p>{post.date}</p>
           <p>{post.title}</p>
         </div>
