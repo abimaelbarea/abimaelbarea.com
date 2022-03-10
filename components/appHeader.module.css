@@ -1,0 +1,26 @@
+.header {
+  height: 3em;
+  width: inherit;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  background-color: var(--bg-color);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+}
+
+.actions > * {
+  font-size: 2em;
+}
+
+.actions a:hover {
+  color: white;
+}

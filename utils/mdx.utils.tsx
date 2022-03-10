@@ -3,7 +3,7 @@ import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import Image from "next/image";
 import remarkGfm from "remark-gfm";
-import Code from "../components/Code";
+import Code from "../components/code";
 
 const MDXComponentMapper: React.ComponentProps<
   typeof mdx.MDXProvider

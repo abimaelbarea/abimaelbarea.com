@@ -1,0 +1,22 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  height: 5em;
+  width: inherit;
+}
+
+.navigation {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5em;
+}
+
+.navigation > a {
+  font-size: 2em;
+}
+
+.navigation a:hover {
+  color: white;
+}

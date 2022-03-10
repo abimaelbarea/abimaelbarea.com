@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-key */
 
 import type { GetStaticProps, NextPage } from "next";
-import Link from "next/link";
-import styles from "../../styles/blog.module.css"; // NOT WORKING!!!
+import BlogPost from "../../components/blogPost";
+import styles from "../../stylesPages/blog.module.css";
 import { PostInfo } from "../../types/post.types";
 import {
   contentPaths,
@@ -10,26 +10,6 @@ import {
   readContentFile
 } from "../../utils/fileSystem.utils";
 import { MDXSerializer } from "../../utils/mdx.utils";
-
-const generatePostPath = (path: string) => `/blog/${path}`;
-
-type BlogPostProps = {
-  post: PostInfo;
-};
-
-const BlogPost = ({ post }: BlogPostProps) => {
-  return (
-    <Link href={generatePostPath(post.path)}>
-      <a className={styles.blogItem}>
-        <p className={styles.blogItemImage}>IMAGE</p>
-        <div className={styles.blogItemTitle}>
-          <p>{post.date}</p>
-          <p>{post.title}</p>
-        </div>
-      </a>
-    </Link>
-  );
-};
 
 type BlogProps = {
   posts: PostInfo[];

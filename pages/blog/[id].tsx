@@ -3,7 +3,7 @@
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import Image from "next/image";
-import styles from "../../styles/article.module.css";
+import styles from "../../stylesPages/article.module.css";
 import { PostInfo } from "../../types/post.types";
 import {
   contentPaths,

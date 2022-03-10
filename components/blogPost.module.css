@@ -1,50 +1,34 @@
-.blog {
-  height: 100%;
-  width: 100%;
-  display: grid;
-  grid-gap: 1rem;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.blogItem {
+.item {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   cursor: pointer;
 }
 
-.blogItemImage {
+.itemImage {
   height: 220px;
   background: red;
 }
 
-.blogItemTitle {
+.itemTitle {
   flex-grow: 1;
   border: 1px solid green;
 }
 
 @media only screen and (max-width: 1200px) {
-  .blog {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .blogItemImage {
+  .itemImage {
     height: 200px;
   }
 }
 
 @media only screen and (max-width: 768px) {
-  .blog {
-    grid-template-columns: repeat(1, 1fr);
-  }
-
-  .blogItem {
+  .item {
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: center;
   }
 
-  .blogItemImage {
+  .itemImage {
     height: 60px;
     min-width: 60px;
     background: red;
