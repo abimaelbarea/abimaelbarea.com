@@ -22,7 +22,7 @@ type PostProps = {
 
 const Post = ({ info, source }: PostProps) => {
   return (
-    <div className={styles.holder}>
+    <div className={styles.content}>
       <article className={styles.article}>
         <header className={styles.header}>
           <time>{info.date}</time>

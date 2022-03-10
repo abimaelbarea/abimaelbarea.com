@@ -17,7 +17,7 @@ type BlogProps = {
 
 const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
   return (
-    <div className={styles.blog}>
+    <div className={styles.content}>
       {posts?.map((post: any, index: number) => (
         <BlogPost key={index} post={post}></BlogPost>
       ))}

@@ -1,4 +1,4 @@
-.holder {
+.content {
   display: flex;
   padding-left: 10%;
   padding-right: 10%;
@@ -13,8 +13,8 @@
 }
 
 .share {
+  display: none; /* TODO: work on this feature */
   min-width: 5em;
-  border: 1px solid white;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -29,6 +29,7 @@
     flex-direction: column;
   }
 
+  /* TODO: work on this feature */
   .share {
     position: fixed;
     right: 1em;
