@@ -23,9 +23,6 @@ const AppHeader = ({ onThemeChange }: HeaderProps) => {
   return (
     <header className={styles.header}>
       <Link href="/">Abimael Barea</Link>
-      <nav>
-        <Link href="/blog">Blog</Link>
-      </nav>
       <div className={styles.actions}>
         <a
           href="https://github.com/abimaelbarea/abimaelbarea.com"
