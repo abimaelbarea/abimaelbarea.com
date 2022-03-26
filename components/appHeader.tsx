@@ -5,7 +5,7 @@ import styles from "./appHeader.module.css";
 
 const AppHeader = () => {
   return (
-    <header className={styles.header}>
+    <header className={styles.content}>
       <Link href="/">Abimael Barea</Link>
       <div className={styles.actions}>
         <a

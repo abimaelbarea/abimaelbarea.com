@@ -27,8 +27,10 @@ const Post = ({ info, source }: PostProps) => {
         <header className={styles.header}>
           <time>{info.date}</time>
           <h1>{info.title}</h1>
-          <h2>{info.subtitle}</h2>
-          <Image src={info.headline} width={1000} height={420} />
+          <span>{info.subtitle}</span>
+          <div className={`img-wrapper ${styles.image}`}>
+            <Image src={info.headline} width={1000} height={420} />
+          </div>
         </header>
         <MDXRemote compiledSource={source} components={MDXComponentMapper} />
       </article>

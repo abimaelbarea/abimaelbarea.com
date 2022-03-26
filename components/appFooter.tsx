@@ -10,7 +10,7 @@ import styles from "./appFooter.module.css";
 
 const AppFooter = () => {
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.content}>
       <nav className={styles.navigation}>
         <a href="https://twitter.com/abimaelbarea" target="_blank">
           <FontAwesomeIcon icon={faTwitter} />

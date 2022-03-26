@@ -1,17 +1,12 @@
-
 .content {
-  display: block;
-  min-height: calc(100% - 8em);
-  width: auto;
-  padding-top: 3em;
-  padding-right: 13%;
-  padding-left: 13%;
+  min-height: calc(100% - 6em);
+  padding: 3em 12em 0 12em;
 }
 
 @media only screen and (max-width: 1200px) {
   .content {
-    padding-right: 9%;
-    padding-left: 9%;
+    padding-right: 10%;
+    padding-left: 10%;
   }
 }
 

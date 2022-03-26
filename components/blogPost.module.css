@@ -11,8 +11,13 @@
 }
 
 .title {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
-  border: 1px solid green;
+}
+
+.title * {
+  margin: 0;
 }
 
 @media only screen and (max-width: 1200px) {

@@ -14,7 +14,7 @@ const BlogPost = ({ post }: BlogPostProps) => {
       <a className={styles.item}>
         <p className={styles.image}>IMAGE</p>
         <div className={styles.title}>
-          <p>{post.date}</p>
+          <time>{post.date}</time>
           <p>{post.title}</p>
         </div>
       </a>

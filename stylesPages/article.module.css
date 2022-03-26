@@ -13,31 +13,14 @@
   flex-direction: column;
 }
 
-.header time {
-  font-size: 0.9em;
-  font-weight: 200;
-  color: white;
-}
-
 .header h1 {
-  margin: 0 0 0.25em 0;
-  font-size: 2em;
-  font-weight: 500;
-  line-height: 1.2em;
-  color: white;
+  margin: 0.25em 0;
 }
 
-.header h2 {
-  margin: 0;
-  font-size: 1.1em;
-  font-weight: 200;
-  color: white;
+.image {
+  margin: 0.5em 0 1em 0;
 }
-
-.header span {
-  margin: 1em 0 0 0 !important;
-}
-
+ 
 .share {
   display: none; /* TODO: work on this feature */
   min-width: 5em;
