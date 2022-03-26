@@ -1,6 +1,6 @@
 .content {
-  min-height: calc(100% - 6em);
-  padding: 3em 12em 0 12em;
+  min-height: calc(100% - 7em);
+  padding: 4em 12em 0 12em;
 }
 
 @media only screen and (max-width: 1200px) {
