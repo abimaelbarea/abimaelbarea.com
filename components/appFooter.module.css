@@ -14,9 +14,5 @@
 }
 
 .navigation > a {
-  font-size: 2em;
-}
-
-.navigation a:hover {
-  color: white;
+  font-size: var(--font-icons-size-small);
 }

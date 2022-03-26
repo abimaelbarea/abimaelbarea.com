@@ -18,9 +18,5 @@
 }
 
 .actions > * {
-  font-size: 2em;
-}
-
-.actions a:hover {
-  color: white;
+  font-size: var(--font-icons-size-small);
 }

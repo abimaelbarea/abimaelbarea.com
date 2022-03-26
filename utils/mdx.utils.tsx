@@ -9,8 +9,17 @@ const MDXComponentMapper: React.ComponentProps<
   typeof mdx.MDXProvider
 >["components"] = {
   a: (props: any) => <a {...props} target="_blank"></a>,
-  img: (props: any) => <Image src={props.src} width={500} height={250} />,
+  img: (props: any) => (
+    <div className="img-wrapper">
+      <Image src={props.src} width={500} height={250} />
+    </div>
+  ),
   code: (props: any) => <Code {...props}></Code>,
+  table: (props: any) => (
+    <div className="table-wrapper">
+      <table {...props}></table>
+    </div>
+  ),
 };
 
 const MDXSerializer = (source: string): Promise<MDXRemoteSerializeResult> =>

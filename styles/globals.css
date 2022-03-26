@@ -1,18 +1,67 @@
+/*************************************************
+  Variables
+*************************************************/
+
+:root {
+  --bg-color: hsl(0, 0%, 11%);
+  --bg-light-color: hsl(0, 0%, 25%);
+  --bg-error-color: hsl(0deg 73% 78%);
+  --bg-info-color: hsl(108deg 73% 78%);
+  --bg-warn-color: hsl(62deg 73% 78%);
+
+  --text-default-color: hsl(0, 0%, 100%);
+  --text-a-light-color: hsl(199deg, 73%, 78%);
+  --text-a-dark-color: hsl(199deg 100% 12%);
+  --text-error-color: hsl(0deg 98% 11%);
+  --text-info-color: hsl(108deg 98% 11%);
+  --text-warn-color: hsl(62deg 98% 11%);
+
+  --separator-color: hsl(0, 0%, 59%);
+
+  --font-family: Poppins, Roboto, Helvetica Neue, sans-serif;
+  --font-size: 15px;
+  --font-weight: 200;
+  --font-strong: 500;
+  --font-line-height: 1.6;
+  --font-color: var(--text-default-color);
+
+  --font-icons-size-small: 2rem;
+
+  --font-variant-h1: 300 2rem/1.1 var(--font-family);
+  --font-variant-h2: 400 1.8rem/1.2 var(--font-family);
+  --font-variant-h3: 400 1.6rem/1.3 var(--font-family);
+  --font-variant-h4: 500 1.4rem/1.4 var(--font-family);
+  --font-variant-h5: 500 1.2rem/1.5 var(--font-family);
+  --font-variant-h6: 500 1.2rem/1.6 var(--font-family);
+
+  --font-variant-table-header: 300 1rem/1.1 var(--font-family);
+  --font-variant-table-content: 100 0.9rem/1.1 var(--font-family);
+
+  --font-variant-li: 200 1rem/1.8 var(--font-family);
+}
+
+/*************************************************
+  Defaults
+*************************************************/
+
 html,
-body {
+body,
+#__next {
   height: 100%;
   width: 100%;
 
   margin: 0;
   padding: 0;
-
-  font-family: Poppins, Roboto, Helvetica Neue, sans-serif;
-  background-color: var(--bg-color);
 }
 
-#__next {
-  height: 100%;
-  width: 100%;
+html,
+body {
+  background-color: var(--bg-color);
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  font-weight: var(--font-weight);
+  line-height: var(--font-line-height);
+  color: var(--font-color);
 }
 
 /*************************************************
@@ -20,91 +69,101 @@ body {
 *************************************************/
 
 h1 {
-  font-size: 2em;
-  font-weight: 500;
-  color: var(--h1-color);
+  font: var(--font-variant-h1);
 }
 
 h2 {
-  font-size: 1.7em;
-  font-weight: 400;
-  color: var(--h2-color);
+  font: var(--font-variant-h2);
 }
 
 h3 {
-  font-weight: 300;
-  color: var(--h3-color);
+  font: var(--font-variant-h3);
 }
 
 h4 {
-  font-weight: 300;
-  color: var(--h4-color);
+  font: var(--font-variant-h4);
 }
 
 h5 {
-  font-weight: 300;
-  color: var(--h5-color);
+  font: var(--font-variant-h5);
 }
 
 h6 {
-  font-weight: 300;
-  color: var(--h6-color);
+  font: var(--font-variant-h6);
 }
 
 hr {
-  margin: 4em 12em;
+  margin: 4em 8em;
+  color: var(--separator-color);
 }
 
 /*************************************************
   Paragraph
 *************************************************/
 
-p {
-  font-weight: 200;
-  color: var(--p-color);
+strong {
+  font-weight: var(--font-strong);
 }
 
 a {
-  font-weight: 200;
-  color: var(--a-color);
+  color: var(--text-a-light-color);
+  text-decoration: none;
+}
 
-  cursor: pointer;
-  text-decoration: underline;
+a:hover {
+  color: var(--text-color);
 }
 
 /*************************************************
-  Lists
+  List
 *************************************************/
 
 li {
-  font-weight: 200;
-  color: var(--p-color);
+  font: var(--font-variant-li);
 }
 
 /*************************************************
   Tables
 *************************************************/
 
+.table-wrapper {
+  display: flex;
+  margin-block-start: 2em;
+  margin-block-end: 2em;
+  overflow-y: auto;
+}
+
+.table-wrapper,
 table {
-  margin: 2em auto;
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
 }
 
 th,
 td {
-  padding: 0.5em 0.5em;
-  border-bottom: 1px solid var(--p-color);
-
+  padding: 0.5em;
+  border: 1px solid var(--separator-color);
   text-align: center;
 }
 
 th {
-  font-weight: 300;
-  color: var(--table-head-color);
+  font: var(--font-variant-table-header);
 }
 
 td {
-  font-weight: 200;
-  color: var(--p-color);
+  font: var(--font-variant-table-content);
+}
+
+/*************************************************
+  Images
+*************************************************/
+
+.img-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 /*************************************************
@@ -113,13 +172,19 @@ td {
 
 blockquote,
 .callout {
-  margin: 0;
-  padding: 1em 2em;
-  display: block;
+  margin-block-start: 2em;
+  margin-block-end: 2em;
+  padding: 0.75em 1.25em;
+}
+
+blockquote a {
+  color: var(--text-a-light-color);
 }
 
 blockquote {
-  background: hsl(0, 0%, 25%);
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+  background: var(--bg-light-color);
 }
 
 .callout {
@@ -127,91 +192,28 @@ blockquote {
   border-right: 0.5em solid;
 }
 
+.callout a {
+  color: var(--text-a-dark-color);
+}
+
 /*************************************************
   Content by error type
 *************************************************/
 
 .--error {
-  background: hsl(0deg 73% 78%);
-  border-color: hsl(0deg 98% 17%);
-}
-
-.--error p,
-.--error a {
-  color: hsl(0deg 98% 17%);
+  background: var(--bg-error-color);
+  border-color: var(--text-error-color);
+  color: var(--text-error-color);
 }
 
 .--info {
-  background: hsl(108deg 73% 78%);
-  border-color: hsl(108deg 98% 17%);
-}
-
-.--info p,
-.--info a {
-  color: hsl(108deg 98% 17%);
+  background: var(--bg-info-color);
+  border-color: var(--text-info-color);
+  color: var(--text-info-color);
 }
 
 .--warn {
-  background: hsl(62deg 73% 78%);
-  border-color: hsl(62deg 98% 17%);
-}
-
-.--warn p,
-.--warn a {
-  color: hsl(62deg 98% 17%);
-}
-
-/*
-
- img -> take a look to the sizing - not sure
- img -> center 
-
- em
- strong
-
- ol
- ul
-
- table ********* try the one that I'm working on but vertical
- tbale -> fix width + scroll
-
-*/
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --primary-color: #325b97;
-    --secondary-color: #9cafeb;
-
-    --bg-color: #fff;
-
-    --h1-color: #000;
-    --h2-color: #000;
-    --h3-color: #000;
-    --h4-color: #000;
-    --h5-color: #000;
-    --h6-color: #000;
-    --p-color: #000;
-
-    --a-color: hsl(199, 69%, 67%);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --primary-color: hsl(256, 95.2%, 75.7%);
-    --secondary-color: hsl(174, 100%, 42%);
-
-    --bg-color: hsl(0, 0%, 11%);
-
-    --h1-color: hsl(0, 0%, 100%);
-    --h2-color: #fff;
-    --h3-color: #fff;
-    --h4-color: #fff;
-    --h5-color: #fff;
-    --h6-color: #fff;
-    --p-color: hsl(0, 0%, 100%);
-
-    --a-color: hsl(199, 69%, 67%);
-    --table-head-color: hsl(271, 87%, 90%);
-  }
+  background: var(--bg-warn-color);
+  border-color: var(--text-warn-color);
+  color: var(--text-warn-color);
 }
