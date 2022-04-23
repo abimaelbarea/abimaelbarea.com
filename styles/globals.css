@@ -1,0 +1,268 @@
+/*************************************************
+  Variables
+*************************************************/
+
+:root {
+  --bg-color: hsl(0, 0%, 11%);
+  --bg-color--opposite: hsl(0, 0%, 100%);
+  --bg-color--blockquote: hsl(0, 0%, 25%);
+  --bg-color--error: hsl(0deg 73% 85%);
+  --bg-color--info: hsl(108deg 73% 85%);
+  --bg-color--warn: hsl(62deg 73% 85%);
+
+  --text-color: hsl(0, 0%, 100%);
+  --text-color--opposite: hsl(0, 0%, 0%);
+  --text-color--a: hsl(199, 100%, 76%);
+  --text-color--a-callout: hsl(219, 100%, 45%);
+  --text-color--error: hsl(0deg 98% 9%);
+  --text-color--info: hsl(108deg 98% 9%);
+  --text-color--warn: hsl(62deg 98% 9%);
+
+  --separator-color: hsl(0, 0%, 59%);
+
+  --font-family: Poppins, Roboto, Helvetica Neue, sans-serif;
+  --font-strong: 400;
+  --font-color: var(--text-color);
+
+  --font-icons--small: 2rem;
+
+  --font: 200 15px/1.5 var(--font-family);
+  --font--h1: 300 2rem var(--font-family);
+  --font--h2: 300 1.6rem var(--font-family);
+  --font--h3: 400 1.4rem var(--font-family);
+  --font--h4: 400 1.2rem var(--font-family);
+  --font--h5: 400 1.2rem var(--font-family);
+  --font--h6: 400 1.2rem var(--font-family);
+
+  --font--table-header: 300 0.9rem var(--font-family);
+  --font--table-content: 100 1rem var(--font-family);
+
+  --font--li: 100 1rem var(--font-family);
+  --font--button: 200 0.8rem var(--font-family);
+  --font--small: 200 0.8rem/1 var(--font-family);
+  --font-page-title: 600 1.5rem var(--font-family);
+}
+
+/*************************************************
+  Defaults
+*************************************************/
+
+html,
+body,
+#__next {
+  height: 100%;
+  width: 100%;
+
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background-color: var(--bg-color);
+  font: var(--font);
+  color: var(--font-color);
+}
+
+/*************************************************
+  Headlines
+*************************************************/
+
+h1 {
+  font: var(--font--h1);
+}
+
+h2 {
+  font: var(--font--h2);
+}
+
+h3 {
+  font: var(--font--h3);
+}
+
+h4 {
+  font: var(--font--h4);
+}
+
+h5 {
+  font: var(--font--h5);
+}
+
+h6 {
+  font: var(--font--h6);
+}
+
+hr {
+  margin: 3em 6em;
+  color: var(--separator-color);
+}
+
+/*************************************************
+  Paragraph
+*************************************************/
+
+strong {
+  font-weight: var(--font-strong);
+}
+
+time {
+  font: var(--font--small);
+}
+
+a {
+  color: var(--text-color--a);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--text-color);
+}
+
+:where(header, h1, h2, h3, h4, h5, h6) > a {
+  color: var(--text-color);
+}
+
+:where(header, h1, h2, h3, h4, h5, h6) > a:hover {
+  color: var(--text-color);
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+button {
+  background: var(--bg-color);
+  padding: 0.6em 0.8em;
+  border-radius: 0.5em;
+  font: var(--font--button);
+  color: var(--bg-color--opposite);
+  border: 1px solid transparent;
+}
+
+button:hover {
+  border: 1px solid var(--bg-color--opposite);
+  cursor: pointer;
+}
+
+button:active {
+  background: var(--bg-color--opposite);
+  color: var(--bg-color);
+  border: 1px solid var(--bg-color);
+}
+
+pre {
+  font-size: 0.9rem;
+  margin: 0;
+  border: 0.5px solid var(--separator-color);
+  border-top: none;
+}
+
+.code-title {
+  padding: 0.5em;
+  margin: 2em 0 0 0;
+  font: var(--font--table-header);
+  text-align: center;
+  border: 1px solid var(--separator-color);
+  background: var(--bg-color--blockquote);
+}
+
+/*************************************************
+  List
+*************************************************/
+
+li {
+  font: var(--font--li);
+}
+
+/*************************************************
+  Tables
+*************************************************/
+
+.table-wrapper {
+  display: flex;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  overflow-y: auto;
+}
+
+.table-wrapper,
+table {
+  width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 0.5em;
+  border: 1px solid var(--separator-color);
+}
+
+th {
+  font: var(--font--table-header);
+  background: var(--bg-color--blockquote);
+}
+
+td {
+  font: var(--font--table-content);
+}
+
+/*************************************************
+  Images
+*************************************************/
+
+.img-wrapper {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+}
+
+/*************************************************
+  Info Box
+*************************************************/
+
+blockquote,
+.callout {
+  margin: 2em 0em;
+  padding: 0.75em 1.25em;
+}
+
+blockquote {
+  font-style: italic;
+  background: var(--bg-color--blockquote);
+}
+
+.callout {
+  border-left: 0.5em solid;
+  border-right: 0.5em solid;
+}
+
+.callout a:hover {
+  color: var(--text-color);
+}
+
+/*************************************************
+  Content by error type
+*************************************************/
+
+.--error {
+  background: var(--bg-color--error);
+  border-color: var(--text-color--error);
+  color: var(--text-color--error);
+}
+
+.--info {
+  background: var(--bg-color--info);
+  border-color: var(--text-color--info);
+  color: var(--text-color--info);
+}
+
+.--warn {
+  background: var(--bg-color--warn);
+  border-color: var(--text-color--warn);
+  color: var(--text-color--warn);
+}
+
+:where(.--error, .--info, .--warn) a {
+  color: var(--text-color--a-callout);
+}

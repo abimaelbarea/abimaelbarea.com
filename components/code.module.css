@@ -1,0 +1,26 @@
+.container {
+  position: relative;
+}
+
+.container pre {
+  padding-top: 2.5em !important;
+}
+
+.container h1 {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: hsl(0, 0%, 100%, 0.85);
+  font: var(--font--small);
+  color: var(--text-color--opposite);
+  padding: 0.5em;
+  margin: 0;
+  min-width: 25px;
+  text-align: center;
+}
+
+.container button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}

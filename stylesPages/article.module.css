@@ -1,0 +1,51 @@
+.container {
+  display: flex;
+  padding: 0 10%;
+}
+
+.article {
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+}
+
+.header h1 {
+  margin: 0.25em 0;
+}
+
+.subtitle {
+  margin-bottom: 1em;
+}
+
+.image {
+  margin: 0.5em 0;
+}
+
+.share {
+  display: none; 
+  min-width: 5em;
+}
+
+@media only screen and (max-width: 1200px) {
+  .container {
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .share {
+    position: fixed;
+    right: 1em;
+    bottom: 1em;
+    height: 3em;
+    width: 3em;
+    min-width: 0em;
+  }
+}

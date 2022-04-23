@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: var(--text-color);
+  gap: 1em;
+}
+
+.container:hover .imageContainer {
+  box-shadow: 0px 0px 8px 1px hsl(0, 0%, 100%, 0.35);
+}
+
+.imageContainer {
+  position: relative;
+}
+
+.imageContainer span {
+  position: unset !important;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.title * {
+  margin: 0;
+}
+
+.title p {
+  font: var(--font--h4);
+}
+
+.categoriesContainer {
+  display: flex;
+  gap: 0.5em;
+  position: absolute;
+  top: 0.25em;
+  right: 0.25em;
+}

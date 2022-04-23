@@ -1,0 +1,143 @@
+---
+title: CSS Encapsulation. A wonderful concept
+subtitle: What is CSS Encapsulation and why is so important?
+description: An introduction to CSS Encapsulation
+date: "2022-04-03"
+headline: /blog/css-encapsulation/main.webp
+path: css-encapsulation
+category: webdev
+subcategories:
+  - css
+---
+
+As a front-end developer or a person that intents to create any kind of website or web application, you're are going end up dealing with CSS. There're some important concepts around the language that needs to be understood to make your life easier while you're writing it.
+
+As part of this article, I want to focus on the **CSS Encapsulation**.
+
+## CSS
+
+### What is CSS (Cascading Style Sheets)?
+
+> CSS is not a programming language. It's not a markup language either. CSS is a style sheet language. CSS is what you use to selectively style HTML elements. [CSS Basics, MDN](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics#what_is_css)
+
+### What means Cascading?
+
+> Stylesheets cascade — at a very simple level, this means that the order of CSS rules matters; when two rules apply that have equal specificity, the one that comes last in the CSS is the one that will be used. [CSS Building Blocks, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#the_cascade)
+
+### How is CSS applied?
+
+To understand this process let's take a look to this image from [CSS First Steps, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works#how_does_css_actually_work):
+
+![Rendering Process](/blog/css-encapsulation/img1.png)
+
+As you can appreciate in the previous image, third step is:
+
+> The browser then fetches most of the resources that are linked to by the HTML document, such as embedded images and videos ... and linked CSS! [CSS First Steps, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works#how_does_css_actually_work)
+
+Let's analyze a small example to ilustrate this:
+
+<section>
+<header className="code-title">File 1</header>
+
+```css
+.container {
+  color: red;
+}
+```
+
+</section>
+
+<section>
+  <header className="code-title">File 2</header>
+
+```css
+.container {
+  color: black;
+}
+```
+
+</section>
+
+<section>
+  <header className="code-title">Combined CSS: File 1 + File 2</header>
+
+```css
+.container {
+  color: red;
+}
+
+.container {
+  color: black;
+}
+```
+
+</section>
+
+<div className="callout --error">
+  **Important!** It's easy to end up having{" "}
+  <u>different styles that applies to same tags</u>. - Every CSS linked to HTML
+  is loaded on the same place (DOM) - The CSS is applied based on the idea of
+  **Cascading** - **Styles for different parts are loaded together**
+</div>
+
+## CSS Encapsulation
+
+Since the beginning of the web, developers has been looking for solutions to this, some of them are pretty popular like [BEM](http://getbem.com/). But let's continue with CSS Encapsulation and some definitions are:
+
+> CSS Encapsulation allows for scoping one’s styles to a specific component or reusable piece of code. [CSS Encapsulation in Angular, Martine Dowden](https://www.pluralsight.com/guides/css-encapsulation-in-angular)
+
+> CSS Encapsulation, or the ability to add new content to your website that does not interfere with the previous one. [Why Should I Learn About Web Components?
+> , Myself](https://medium.com/front-end-weekly/why-should-i-learn-about-web-components-59edc5a42d94)
+
+So, the idea of CSS Encapsulation allows us to:
+
+- Define a piece of css and use it
+- Isolate those styles in an easy way
+- No need to worry about the order of the styles
+- No need to write complex classes names
+
+<div className="callout --info">
+  **CSS Encapsulation** is focus on [DX - Developer
+  Experience](https://developerexperience.io/practices/good-developer-experience)
+  and it aims to simplify the way of writing CSS
+</div>
+
+### Popular Tools
+
+- [CSS Modules](https://github.com/css-modules/css-modules)
+- [Styled Components](https://styled-components.com/)
+- [Emotion](https://emotion.sh/docs/introduction)
+
+<div className="callout --warn">
+  **Remember!** Before picking a third party solution read the documentation of
+  the framework you're working with, some of them like Angular provide a
+  [built-in mechanism](https://angular.io/guide/view-encapsulation) to deal with
+  CSS Encapsulation.
+</div>
+
+### Web Components and ShadowDom
+
+I wrote an article about web component where I explain the basic concepts behind Web Components and ShadowDom [Why Should I Learn About Web Components?
+, Myself](https://medium.com/front-end-weekly/why-should-i-learn-about-web-components-59edc5a42d94)
+
+But to summarize here, the concept of ShadowDom is part of the [HTML living standard](https://dom.spec.whatwg.org/#shadow-trees) and **it allow us to provide a new DOM's node with encapsulated styles**.
+
+#### CSS Variables
+
+CSS Variables is the most common used name for CSS Custom Properties.
+
+> Custom properties (sometimes referred to as CSS variables or cascading variables) are entities defined by CSS authors that contain specific values to be reused throughout a document [Using CSS custom properties (variables), MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+
+**Why I mention this properties?** Well, because while using Web Components and ShadowDom for CSS encapsulation <u>you could still override your styles in case you need it</u> with the power of CSS variables.
+
+<div className="callout --info">
+  **CSS Variables**
+  <u>
+    are widely support for browsers and could be use in combination with
+    solutions
+  </u>
+  like CSS Modules, Styled Components, Emotion, Angular Encapsulation. So, they
+  are **NOT** tight to Web Components and ShadowDom.
+</div>
+
+## Conclusions
