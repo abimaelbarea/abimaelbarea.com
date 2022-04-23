@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from "next";
 import { NextSeo } from "next-seo";
-import BlogPost from "../../components/blogPost";
+import BlogPost from "../../components/BlogPost";
 import styles from "../../stylesPages/blog.module.css";
 import { PostInfo } from "../../types/post.types";
 import {

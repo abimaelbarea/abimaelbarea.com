@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
-import Code from "../components/code";
+import Code from "../components/Code";
 
 const header = ({ level, children, id }: any) => {
   const CustomHeader = `h${level}` as keyof JSX.IntrinsicElements;
