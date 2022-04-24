@@ -37,7 +37,7 @@
   --font--table-header: 300 0.9rem var(--font-family);
   --font--table-content: 100 1rem var(--font-family);
 
-  --font--li: 100 1rem var(--font-family);
+  --font--li: 200 1rem/2.2 var(--font-family);
   --font--button: 200 0.8rem var(--font-family);
   --font--small: 200 0.8rem/1 var(--font-family);
   --font-page-title: 600 1.5rem var(--font-family);
