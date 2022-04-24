@@ -33,6 +33,7 @@ const MDXComponentMapper: React.ComponentProps<
         src={props.src ?? ""}
         layout="fill"
         objectFit="contain"
+        quality={50}
       />
     </span>
   ),

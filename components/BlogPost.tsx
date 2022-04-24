@@ -17,7 +17,14 @@ const BlogPost = ({
     <Link href={generatePostPath(path)}>
       <a className={styles.container}>
         <div className={styles.imageContainer}>
-          <Image alt={path} src={headline} width={1000} height={563} />
+          <Image
+            alt={path}
+            src={headline}
+            width={1000}
+            height={563}
+            quality={50}
+            priority={true}
+          />
           <div className={styles.categoriesContainer}>
             <button onClick={(e) => e.preventDefault()}>{category}</button>
             <button onClick={(e) => e.preventDefault()}>
