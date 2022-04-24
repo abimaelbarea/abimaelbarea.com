@@ -8,6 +8,7 @@ import {
   IconDefinition
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { DefaultSeo } from "next-seo";
 import type { AppProps } from "next/app";
 import Link from "next/link";
 import "../styles/globals.css";
@@ -80,6 +81,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
           {socialNetworks.map(NavigationItem)}
         </nav>
       </footer>
+      <DefaultSeo />
     </>
   );
 };
