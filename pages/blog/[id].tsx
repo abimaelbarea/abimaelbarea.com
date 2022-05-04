@@ -32,8 +32,8 @@ const Post = ({
             <Image
               alt={path}
               src={headline}
-              width={1000}
-              height={563}
+              width={950}
+              height={534}
               quality={50}
               priority={true}
             />
