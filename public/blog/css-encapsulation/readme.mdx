@@ -1,16 +1,16 @@
 ---
 title: CSS Encapsulation. A wonderful concept
-subtitle: What is CSS Encapsulation and why is so important?
+subtitle: What is CSS Encapsulation and why is it so important?
 description: An introduction to CSS Encapsulation
 date: "2022-04-03"
-headline: /blog/css-encapsulation/main.webp
+headline: /blog/css-encapsulation/main.svg
 path: css-encapsulation
 category: webdev
 subcategories:
   - css
 ---
 
-As a front-end developer or a person that intents to create any kind of website or web application, you're are going end up dealing with CSS. There're some important concepts around the language that needs to be understood to make your life easier while you're writing it.
+As a front-end developer or a person that intends to create any kind of website or web application, you're are going to end up dealing with CSS. There're some important concepts around the language that need to be understood to make your life easier while you're writing it.
 
 As part of this article, I want to focus on the **CSS Encapsulation**.
 
@@ -20,13 +20,13 @@ As part of this article, I want to focus on the **CSS Encapsulation**.
 
 > CSS is not a programming language. It's not a markup language either. CSS is a style sheet language. CSS is what you use to selectively style HTML elements. [CSS Basics, MDN](https://developer.mozilla.org/en-US/docs/Learn/Getting_started_with_the_web/CSS_basics#what_is_css)
 
-### What means Cascading?
+### What does means Cascading?
 
-> Stylesheets cascade — at a very simple level, this means that the order of CSS rules matters; when two rules apply that have equal specificity, the one that comes last in the CSS is the one that will be used. [CSS Building Blocks, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#the_cascade)
+> Stylesheets cascade — at a very simple level, this means that the order of CSS rules matters; when two rules are applied and have equal specificity, the one that comes last in the CSS is the one that will be used. [CSS Building Blocks, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Cascade_and_inheritance#the_cascade)
 
 ### How is CSS applied?
 
-To understand this process let's take a look to this image from [CSS First Steps, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works#how_does_css_actually_work):
+To understand this process let's take a look at this image from [CSS First Steps, MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/First_steps/How_CSS_works#how_does_css_actually_work):
 
 ![Rendering Process](/blog/css-encapsulation/img1.webp)
 
@@ -82,7 +82,7 @@ Let's analyze a small example to ilustrate this:
 
 ## CSS Encapsulation
 
-Since the beginning of the web, developers has been looking for solutions to this, some of them are pretty popular like [BEM](http://getbem.com/). But let's continue with CSS Encapsulation and some definitions are:
+Since the beginning of the web, developers have been looking for solutions to this, some of them are pretty popular like [BEM](http://getbem.com/). But let's continue with CSS Encapsulation and some definitions are:
 
 > CSS Encapsulation allows for scoping one’s styles to a specific component or reusable piece of code. [CSS Encapsulation in Angular, Martine Dowden](https://www.pluralsight.com/guides/css-encapsulation-in-angular)
 
@@ -97,7 +97,7 @@ So, the idea of CSS Encapsulation allows us to:
 - No need to write complex classes names
 
 <div className="callout --info">
-  **CSS Encapsulation** is focus on [DX - Developer
+  **CSS Encapsulation** is focused on [DX - Developer
   Experience](https://developerexperience.io/practices/good-developer-experience)
   and it aims to simplify the way of writing CSS
 </div>
@@ -128,12 +128,12 @@ CSS Variables is the most common used name for CSS Custom Properties.
 
 > Custom properties (sometimes referred to as CSS variables or cascading variables) are entities defined by CSS authors that contain specific values to be reused throughout a document [Using CSS custom properties (variables), MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
 
-**Why I mention this properties?** Well, because while using Web Components and ShadowDom for CSS encapsulation <u>you could still override your styles in case you need it</u> with the power of CSS variables.
+**Why do I mention this properties?** Well, because while using Web Components and ShadowDom for CSS encapsulation <u>you could still override your styles in case you need it</u> with the power of CSS variables.
 
 <div className="callout --info">
   **CSS Variables**
   <u>
-    are widely support for browsers and could be use in combination with
+    are widely supported by browsers and could be used in combination with
     solutions
   </u>
   like CSS Modules, Styled Components, Emotion, Angular Encapsulation. So, they
