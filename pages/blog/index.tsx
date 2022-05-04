@@ -21,7 +21,7 @@ const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
         {posts?.map((post, index) => (
           <BlogPost key={index} post={post} />
         ))}
-      </div>
+      </div> 
       <NextSeo
         title="Abimael Barea's Blog"
         description="Personal blog of Abimael Barea"
