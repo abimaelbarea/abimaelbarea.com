@@ -20,9 +20,9 @@ const BlogPost = ({
           <Image
             alt={path}
             src={headline}
-            width={500}
-            height={281}
-            quality={50}
+            width={400}
+            height={225}
+            quality={30}
             priority={true}
           />
           <div className={styles.categoriesContainer}>
