@@ -4,6 +4,7 @@ type PostInfo = {
   description?: string;
   date: string;
   headline: string;
+  ogImage: string;
   path: string;
   category: string;
   subcategories: string[];
