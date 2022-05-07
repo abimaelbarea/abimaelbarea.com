@@ -27,15 +27,14 @@ const MDXComponentMapper: React.ComponentProps<
   h6: (props) => header({ ...props, level: 6 }),
   a: (props) => <a {...props} target="_blank" rel="noreferrer"></a>,
   img: (props) => (
-    <span className="img-wrapper" style={{ maxWidth: "500px", height: "281px" }}>
-      <Image
-        alt={props.alt}
-        src={props.src ?? ""}
-        layout="fill"
-        objectFit="contain"
-        quality={50}
-      />
-    </span>
+    <Image
+      alt={props.alt}
+      src={props.src ?? ""}
+      layout="responsive"
+      width={500}
+      height={281}
+      quality={30}
+    />
   ),
   code: (props) => {
     const sanitizedCode = (props.children as string).trim();

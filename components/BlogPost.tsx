@@ -20,6 +20,7 @@ const BlogPost = ({
           <Image
             alt={path}
             src={headline}
+            layout="responsive"
             width={400}
             height={225}
             quality={30}
