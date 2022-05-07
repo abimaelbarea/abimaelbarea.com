@@ -18,7 +18,7 @@ type PostProps = {
 };
 
 const Post = ({
-  info: { title, subtitle, description, date, path, headline },
+  info: { title, subtitle, description, date, path, headline, ogImage },
   source,
 }: PostProps) => {
   return (
@@ -43,7 +43,29 @@ const Post = ({
         </article>
         <aside className={styles.share}></aside>
       </div>
-      <NextSeo title={title} description={description} />
+      <NextSeo
+        title={title}
+        description={description}
+        openGraph={{
+          title,
+          description,
+          site_name: "Abimael Barea's Blog",
+          url: `https://www.abimaelbarea.com/blog${path}`,
+          images: [
+            {
+              url: `https://www.abimaelbarea.com/${ogImage}`,
+              width: 1200,
+              height: 630,
+              alt: title,
+            },
+          ],
+        }}
+        twitter={{
+          handle: "@abimaelbarea",
+          site: "@abimaelbarea",
+          cardType: "summary_large_image",
+        }}
+      />
     </>
   );
 };

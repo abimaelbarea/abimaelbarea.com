@@ -1,4 +1,4 @@
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import {
   faDev,
   faGithub,
@@ -9,7 +9,7 @@ import {
   IconDefinition
 } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { DefaultSeo } from "next-seo";
+import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 import type { AppProps } from "next/app";
 import Link from "next/link";
 import Script from "next/script";
@@ -84,6 +84,15 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         </nav>
       </footer>
       <DefaultSeo />
+      <SocialProfileJsonLd
+        type="Person"
+        name="Abimael Barea"
+        url="https://www.abimaelbarea.com"
+        sameAs={[
+          "https://twitter.com/abimaelbarea",
+          "https://www.linkedin.com/in/abimaelbarea/",
+        ]}
+      />
       <Script
         src="https://www.googletagmanager.com/gtag/js?id=G-3LFY46Y1CL"
         strategy="afterInteractive"
