@@ -21,11 +21,12 @@
 }
 
 .image {
-  margin: 0.5em 0;
+  max-width: 900px;
+  height: 506px;
 }
 
 .share {
-  display: none; 
+  display: none;
   min-width: 5em;
 }
 
@@ -36,6 +37,11 @@
 }
 
 @media only screen and (max-width: 768px) {
+  .image {
+    max-width: 500px;
+    height: 281px;
+  }
+
   .container {
     flex-direction: column;
   }

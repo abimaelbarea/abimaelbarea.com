@@ -29,14 +29,18 @@ const Post = ({
             <time>{toDateString(date)}</time>
             <h1>{title}</h1>
             <span className={styles.subtitle}>{subtitle}</span>
-            <Image
-              alt={path}
-              src={headline}
-              width={950}
-              height={534}
-              quality={50}
-              priority={true}
-            />
+            <div>
+              <span className={`img-wrapper ${styles.image}`}>
+                <Image
+                  alt={path}
+                  src={headline}
+                  layout="fill"
+                  objectFit="contain"
+                  quality={50}
+                  priority={true}
+                />
+              </span>
+            </div>
           </header>
           <MDXRemote compiledSource={source} components={MDXComponentMapper} />
         </article>

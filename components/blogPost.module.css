@@ -37,5 +37,10 @@
   gap: 0.5em;
   position: absolute;
   top: 0.5em;
-  right: 0.5em;
+  right: 0.3em;
+}
+
+/* This need to be here until some extra features are added */
+.categoriesContainer > button {
+  pointer-events: none;
 }
