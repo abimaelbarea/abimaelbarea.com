@@ -227,10 +227,6 @@ blockquote {
   border-right: 0.5em solid;
 }
 
-.callout a:hover {
-  color: var(--text-color);
-}
-
 /*************************************************
   Content by error type
 *************************************************/
@@ -254,5 +250,9 @@ blockquote {
 }
 
 :where(.--error, .--info, .--warn) a {
+  color: var(--text-color--a-callout);
+}
+
+:where(.--error, .--info, .--warn) a:hover {
   color: var(--text-color--a-callout);
 }
