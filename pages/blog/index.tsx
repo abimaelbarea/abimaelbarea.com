@@ -9,6 +9,7 @@ import {
   readContentFile
 } from "../../utils/fileSystem.utils";
 import { MDXSerializer } from "../../utils/mdx.utils";
+import { generateRSSFeed } from "../../utils/rss";
 
 type BlogProps = {
   posts: PostInfo[];
@@ -21,7 +22,7 @@ const Blog: NextPage<BlogProps> = ({ posts }: BlogProps) => {
         {posts?.map((post, index) => (
           <BlogPost key={index} post={post} />
         ))}
-      </div> 
+      </div>
       <NextSeo
         title="Abimael Barea's Blog"
         description="Personal blog of Abimael Barea"
@@ -42,5 +43,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const posts = postsContent
     .map((post) => post.frontmatter)
     .sort((postA, postB) => postB.date.localeCompare(postA.date));
+  generateRSSFeed(posts);
   return { props: { posts } };
 };
