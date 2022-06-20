@@ -12,4 +12,7 @@ const readContentDirectory = (directory: string) => fs.readdirSync(directory);
 
 const readContentFile = (filePath: string) => fs.readFileSync(filePath, "utf8");
 
-export { contentPaths, readContentDirectory, readContentFile };
+const writeFile = (filePath: string, content: string) =>
+  fs.writeFileSync(filePath, content);
+
+export { contentPaths, readContentDirectory, readContentFile, writeFile };

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+    <channel>
+        <title>Abimael Barea's blog</title>
+        <link>https://www.abimaelbarea.com</link>
+        <description>Talks about software</description>
+        <lastBuildDate>Sat, 11 Jun 2022 19:30:25 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <copyright>2022</copyright>
+        <item>
+            <title><![CDATA[CSS Encapsulation. A wonderful concept]]></title>
+            <link>https://www.abimaelbarea.com/blog/css-encapsulation</link>
+            <guid>css-encapsulation</guid>
+            <pubDate>Mon, 09 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[An introduction to CSS Encapsulation]]></description>
+            <author>abimaelbarea@gmail.com (Abimael Barea)</author>
+            <enclosure url="https://www.abimaelbarea.com//blog/css-encapsulation/og.png" length="0" type="image/png"/>
+        </item>
+        <item>
+            <title><![CDATA[Blog Setup]]></title>
+            <link>https://www.abimaelbarea.com/blog/blog-setup</link>
+            <guid>blog-setup</guid>
+            <pubDate>Sun, 08 May 2022 00:00:00 GMT</pubDate>
+            <description><![CDATA[My blogpost]]></description>
+            <author>abimaelbarea@gmail.com (Abimael Barea)</author>
+            <enclosure url="https://www.abimaelbarea.com//blog/blog-setup/og.png" length="0" type="image/png"/>
+        </item>
+    </channel>
+</rss>

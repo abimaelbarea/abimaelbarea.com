@@ -8,6 +8,7 @@ import {
   faTwitter,
   IconDefinition
 } from "@fortawesome/free-brands-svg-icons";
+import { faRss } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { DefaultSeo, SocialProfileJsonLd } from "next-seo";
 import type { AppProps } from "next/app";
@@ -41,6 +42,11 @@ const socialNetworks: NavigationItemProps[] = [
     icon: faMedium,
     url: "https://medium.com/@abimaelbarea",
     aria: "Medium",
+  },
+  {
+    icon: faRss,
+    url: "https://www.abimaelbarea.com/rss.xml",
+    aria: "RSS",
   },
 ];
 
